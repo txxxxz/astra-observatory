@@ -1,0 +1,6 @@
+{
+  "host": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "macos": "27.2",
+  "note": "Container resource limits define the budget; host hardware counters unavailable inside sandbox."
+}

@@ -1,0 +1,746 @@
+{
+  "kind": "original-sample-replay",
+  "not_a_performance_benchmark": true,
+  "test_id": "attachment-probe-001",
+  "elapsed_seconds": 0.8517794579965994,
+  "messages": 121,
+  "statuses": {
+    "applied": 115,
+    "quarantined": 2,
+    "duplicate": 4
+  },
+  "results": [
+    {
+      "file": "message-00001.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 1
+    },
+    {
+      "file": "message-00002.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 2
+    },
+    {
+      "file": "message-00003.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 3
+    },
+    {
+      "file": "message-00004.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 4
+    },
+    {
+      "file": "message-00005.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 5
+    },
+    {
+      "file": "message-00006.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 6
+    },
+    {
+      "file": "message-00007.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 7
+    },
+    {
+      "file": "message-00008.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 8
+    },
+    {
+      "file": "message-00009.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 9
+    },
+    {
+      "file": "message-00010.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 10
+    },
+    {
+      "file": "message-00011.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 11
+    },
+    {
+      "file": "message-00012.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 12
+    },
+    {
+      "file": "message-00013.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 13
+    },
+    {
+      "file": "message-00014.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 14
+    },
+    {
+      "file": "message-00015.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 15
+    },
+    {
+      "file": "message-00016.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 16
+    },
+    {
+      "file": "message-00017.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 17
+    },
+    {
+      "file": "message-00018.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 18
+    },
+    {
+      "file": "message-00019.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 19
+    },
+    {
+      "file": "message-00020.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 20
+    },
+    {
+      "file": "message-00021.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 21
+    },
+    {
+      "file": "message-00022.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 22
+    },
+    {
+      "file": "message-00023.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 23
+    },
+    {
+      "file": "message-00024.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 24
+    },
+    {
+      "file": "message-00025.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 25
+    },
+    {
+      "file": "message-00026.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 26
+    },
+    {
+      "file": "message-00027.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 27
+    },
+    {
+      "file": "message-00028.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 28
+    },
+    {
+      "file": "message-00029.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 29
+    },
+    {
+      "file": "message-00030.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 30
+    },
+    {
+      "file": "message-00031.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 31
+    },
+    {
+      "file": "message-00032.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 32
+    },
+    {
+      "file": "message-00033.json",
+      "http_status": 200,
+      "status": "quarantined",
+      "message_id": 33,
+      "reason": "object type_id: expected integer >= 1"
+    },
+    {
+      "file": "message-00034.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 34
+    },
+    {
+      "file": "message-00035.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 35
+    },
+    {
+      "file": "message-00036.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 36
+    },
+    {
+      "file": "message-00037.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 37
+    },
+    {
+      "file": "message-00038.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 38
+    },
+    {
+      "file": "message-00039.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 39
+    },
+    {
+      "file": "message-00040.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 40
+    },
+    {
+      "file": "message-00041.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 41
+    },
+    {
+      "file": "message-00042.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 42
+    },
+    {
+      "file": "message-00043.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 43
+    },
+    {
+      "file": "message-00044.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 44
+    },
+    {
+      "file": "message-00045.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 45
+    },
+    {
+      "file": "message-00046.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 46
+    },
+    {
+      "file": "message-00047.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 47
+    },
+    {
+      "file": "message-00048.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 48
+    },
+    {
+      "file": "message-00049.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 49
+    },
+    {
+      "file": "message-00050.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 49,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00051.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 50
+    },
+    {
+      "file": "message-00052.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 51
+    },
+    {
+      "file": "message-00053.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 52
+    },
+    {
+      "file": "message-00054.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 52,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00055.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 53
+    },
+    {
+      "file": "message-00056.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 54
+    },
+    {
+      "file": "message-00057.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 55
+    },
+    {
+      "file": "message-00058.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 56
+    },
+    {
+      "file": "message-00059.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 57
+    },
+    {
+      "file": "message-00060.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 58
+    },
+    {
+      "file": "message-00061.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 59
+    },
+    {
+      "file": "message-00062.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 59,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00063.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 60
+    },
+    {
+      "file": "message-00064.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 61
+    },
+    {
+      "file": "message-00065.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 62
+    },
+    {
+      "file": "message-00066.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 63
+    },
+    {
+      "file": "message-00067.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 64
+    },
+    {
+      "file": "message-00068.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 65
+    },
+    {
+      "file": "message-00069.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 66
+    },
+    {
+      "file": "message-00070.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 67
+    },
+    {
+      "file": "message-00071.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 68
+    },
+    {
+      "file": "message-00072.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 69
+    },
+    {
+      "file": "message-00073.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 70
+    },
+    {
+      "file": "message-00074.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 71
+    },
+    {
+      "file": "message-00075.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 72
+    },
+    {
+      "file": "message-00076.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 73
+    },
+    {
+      "file": "message-00077.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 74
+    },
+    {
+      "file": "message-00078.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 75
+    },
+    {
+      "file": "message-00079.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 75,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00080.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 76
+    },
+    {
+      "file": "message-00081.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 77
+    },
+    {
+      "file": "message-00082.json",
+      "http_status": 200,
+      "status": "quarantined",
+      "message_id": 78,
+      "reason": "object attachment-probe-001-5347: attributes must be an object"
+    },
+    {
+      "file": "message-00083.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 79
+    },
+    {
+      "file": "message-00084.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 80
+    },
+    {
+      "file": "message-00085.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 81
+    },
+    {
+      "file": "message-00086.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 82
+    },
+    {
+      "file": "message-00087.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 83
+    },
+    {
+      "file": "message-00088.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 84
+    },
+    {
+      "file": "message-00089.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 85
+    },
+    {
+      "file": "message-00090.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 86
+    },
+    {
+      "file": "message-00091.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 87
+    },
+    {
+      "file": "message-00092.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 88
+    },
+    {
+      "file": "message-00093.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 89
+    },
+    {
+      "file": "message-00094.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 90
+    },
+    {
+      "file": "message-00095.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 91
+    },
+    {
+      "file": "message-00096.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 92
+    },
+    {
+      "file": "message-00097.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 93
+    },
+    {
+      "file": "message-00098.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 94
+    },
+    {
+      "file": "message-00099.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 95
+    },
+    {
+      "file": "message-00100.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 96
+    },
+    {
+      "file": "message-00101.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 97
+    },
+    {
+      "file": "message-00102.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 98
+    },
+    {
+      "file": "message-00103.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 99
+    },
+    {
+      "file": "message-00104.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 100
+    },
+    {
+      "file": "message-00105.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 101
+    },
+    {
+      "file": "message-00106.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 102
+    },
+    {
+      "file": "message-00107.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 103
+    },
+    {
+      "file": "message-00108.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 104
+    },
+    {
+      "file": "message-00109.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 105
+    },
+    {
+      "file": "message-00110.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 106
+    },
+    {
+      "file": "message-00111.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 107
+    },
+    {
+      "file": "message-00112.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 108
+    },
+    {
+      "file": "message-00113.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 109
+    },
+    {
+      "file": "message-00114.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 110
+    },
+    {
+      "file": "message-00115.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 111
+    },
+    {
+      "file": "message-00116.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 112
+    },
+    {
+      "file": "message-00117.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 113
+    },
+    {
+      "file": "message-00118.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 114
+    },
+    {
+      "file": "message-00119.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 115
+    },
+    {
+      "file": "message-00120.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 116
+    },
+    {
+      "file": "message-00121.json",
+      "http_status": 200,
+      "status": "applied",
+      "message_id": 117
+    }
+  ]
+}

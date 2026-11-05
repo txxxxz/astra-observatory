@@ -1,0 +1,631 @@
+{
+  "test_id": "recovery-20261105T031735Z",
+  "status": "passed",
+  "kill_signal": "SIGKILL",
+  "acknowledged_messages": 21,
+  "objects_checked_field_by_field": 20,
+  "acknowledged_message_checks": [
+    {
+      "id": 5109,
+      "status": "applied",
+      "content_hash": "9cd0136af145bd4d72026c8754c97df9dc24035ec68f78c7eac53e8085790708"
+    },
+    {
+      "id": 5110,
+      "status": "applied",
+      "content_hash": "0cfe0adbcdd4310e9f642e1cbaa2efa66cd3f562842f2eff71e16d6abc1084d9"
+    },
+    {
+      "id": 5111,
+      "status": "applied",
+      "content_hash": "2fa32ea31711de2f8a12c87b5a7780e5fa17d1af1926d57004f7a25a7ca0b58f"
+    },
+    {
+      "id": 5112,
+      "status": "applied",
+      "content_hash": "b91952d8020d0f7d05ea9af99337d05b33366d3250567207de9441f68e03bfc1"
+    },
+    {
+      "id": 5113,
+      "status": "applied",
+      "content_hash": "a0cbb4d8200acd0cb6748203f7d0bd5072575b30c95a69a529e3c7766b440768"
+    },
+    {
+      "id": 5114,
+      "status": "applied",
+      "content_hash": "eb14fa4aeda6f0a86a0ee6f42121cc74dcc57f23da102eeef7c1d577ae0b7532"
+    },
+    {
+      "id": 5115,
+      "status": "applied",
+      "content_hash": "532c19e2bbbad46d85f4817439b1f0b0c048511d367e526b1721d90ed107ec5d"
+    },
+    {
+      "id": 5116,
+      "status": "applied",
+      "content_hash": "42b669c69a25b9307ad4210677dad63a7838c62dce348171fe53c4aca879d76f"
+    },
+    {
+      "id": 5117,
+      "status": "applied",
+      "content_hash": "491bf0d0d1a4a7e12d3a57f3e5e290f59fbbc66b51efaa78d920a39fc9afc716"
+    },
+    {
+      "id": 5118,
+      "status": "applied",
+      "content_hash": "0249c090e72125b14c83fb581957eadb51880ca6d3dabbc3f6015fa97572ee87"
+    },
+    {
+      "id": 5119,
+      "status": "applied",
+      "content_hash": "1f7ad353c31a66338cdd8e4252266887818bd7d94501ad73e450e667c28eb111"
+    },
+    {
+      "id": 5120,
+      "status": "applied",
+      "content_hash": "45d906689ca454c47db92add6279b378279adc3a1d583a3b1d82237a0fdcbe4a"
+    },
+    {
+      "id": 5121,
+      "status": "applied",
+      "content_hash": "70f33a8322639b4547e0e7a7bf67044906735ada143cb7539bde4ad5f8214b6a"
+    },
+    {
+      "id": 5122,
+      "status": "applied",
+      "content_hash": "365c62482473b502e2e966e941bb39af838153ca54af4d440dc42196d7219a46"
+    },
+    {
+      "id": 5123,
+      "status": "applied",
+      "content_hash": "998743c079fbc07288beaf2087faf6eea4cd3568823210fc6ec008c42567ed21"
+    },
+    {
+      "id": 5124,
+      "status": "applied",
+      "content_hash": "96799292a3bd1d8a9f809623b6110efa406d652e86090c81f74c4f86f115da62"
+    },
+    {
+      "id": 5125,
+      "status": "applied",
+      "content_hash": "7bed074a24c564b8c87bc03d270b3cae84730a0dbd29ebc36994b2ae67312418"
+    },
+    {
+      "id": 5126,
+      "status": "applied",
+      "content_hash": "ddd689f34c5a356c0df9af1ed4740499c4a0be213cc890f3cb3da1b54e46d0a9"
+    },
+    {
+      "id": 5127,
+      "status": "applied",
+      "content_hash": "cacedb20b98b5f0d9c6fc52974e0032be028c85505d4d62b0768bd1846b0d3ba"
+    },
+    {
+      "id": 5128,
+      "status": "applied",
+      "content_hash": "c1d5cfeb74b103a35b8037f6dec6faaa4b1c7e705b615d3c049988364a828fd1"
+    },
+    {
+      "id": 5129,
+      "status": "applied",
+      "content_hash": "717b3f7cce13d6b5ad9997aa4a1623ea9ab6c0d9b4eb552e78fb4530310ff709"
+    }
+  ],
+  "before": {
+    "test_id": "recovery-20261105T031735Z",
+    "created_at": "2026-11-05T03:17:35.487+00:00",
+    "updated_at": "2026-11-05T03:17:35.580+00:00",
+    "object_count": 20,
+    "message_count": 21,
+    "duplicate_count": 0,
+    "quarantined_count": 0,
+    "conflict_count": 0,
+    "revision": 1,
+    "received_objects": 20,
+    "applied_objects": 20,
+    "rate_objects_per_second": 2.0,
+    "rate_messages_per_second": 2.1,
+    "database_bytes": 1885949952,
+    "storage_limit_bytes": 20401094656,
+    "backlog": 0,
+    "frames": [],
+    "categories": [
+      {
+        "type_id": 1,
+        "parent_id": 0,
+        "name": "恢复验证",
+        "object_count": 20,
+        "subtree_count": 20
+      }
+    ],
+    "recent_messages": [
+      {
+        "id": 5129,
+        "kind": "objects",
+        "message_key": "19",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.580+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5128,
+        "kind": "objects",
+        "message_key": "18",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.576+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5127,
+        "kind": "objects",
+        "message_key": "17",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.573+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5126,
+        "kind": "objects",
+        "message_key": "16",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.569+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5125,
+        "kind": "objects",
+        "message_key": "15",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.566+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5124,
+        "kind": "objects",
+        "message_key": "14",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.562+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5123,
+        "kind": "objects",
+        "message_key": "13",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.558+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5122,
+        "kind": "objects",
+        "message_key": "12",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.555+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5121,
+        "kind": "objects",
+        "message_key": "11",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.550+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5120,
+        "kind": "objects",
+        "message_key": "10",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.546+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5119,
+        "kind": "objects",
+        "message_key": "9",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.542+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5118,
+        "kind": "objects",
+        "message_key": "8",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.537+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5117,
+        "kind": "objects",
+        "message_key": "7",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.533+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5116,
+        "kind": "objects",
+        "message_key": "6",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.527+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5115,
+        "kind": "objects",
+        "message_key": "5",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.520+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5114,
+        "kind": "objects",
+        "message_key": "4",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.516+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5113,
+        "kind": "objects",
+        "message_key": "3",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.511+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5112,
+        "kind": "objects",
+        "message_key": "2",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.506+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5111,
+        "kind": "objects",
+        "message_key": "1",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.500+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5110,
+        "kind": "objects",
+        "message_key": "0",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.494+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      }
+    ],
+    "uptime_seconds": 7.22
+  },
+  "after": {
+    "test_id": "recovery-20261105T031735Z",
+    "created_at": "2026-11-05T03:17:35.487+00:00",
+    "updated_at": "2026-11-05T03:17:35.580+00:00",
+    "object_count": 20,
+    "message_count": 21,
+    "duplicate_count": 0,
+    "quarantined_count": 0,
+    "conflict_count": 0,
+    "revision": 1,
+    "received_objects": 20,
+    "applied_objects": 20,
+    "rate_objects_per_second": 2.0,
+    "rate_messages_per_second": 2.1,
+    "database_bytes": 1885949952,
+    "storage_limit_bytes": 20401094656,
+    "backlog": 0,
+    "frames": [],
+    "categories": [
+      {
+        "type_id": 1,
+        "parent_id": 0,
+        "name": "恢复验证",
+        "object_count": 20,
+        "subtree_count": 20
+      }
+    ],
+    "recent_messages": [
+      {
+        "id": 5129,
+        "kind": "objects",
+        "message_key": "19",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.580+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5128,
+        "kind": "objects",
+        "message_key": "18",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.576+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5127,
+        "kind": "objects",
+        "message_key": "17",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.573+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5126,
+        "kind": "objects",
+        "message_key": "16",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.569+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5125,
+        "kind": "objects",
+        "message_key": "15",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.566+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5124,
+        "kind": "objects",
+        "message_key": "14",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.562+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5123,
+        "kind": "objects",
+        "message_key": "13",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.558+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5122,
+        "kind": "objects",
+        "message_key": "12",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.555+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5121,
+        "kind": "objects",
+        "message_key": "11",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.550+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5120,
+        "kind": "objects",
+        "message_key": "10",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.546+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5119,
+        "kind": "objects",
+        "message_key": "9",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.542+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5118,
+        "kind": "objects",
+        "message_key": "8",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.537+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5117,
+        "kind": "objects",
+        "message_key": "7",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.533+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5116,
+        "kind": "objects",
+        "message_key": "6",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.527+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5115,
+        "kind": "objects",
+        "message_key": "5",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.520+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5114,
+        "kind": "objects",
+        "message_key": "4",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.516+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5113,
+        "kind": "objects",
+        "message_key": "3",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.511+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5112,
+        "kind": "objects",
+        "message_key": "2",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.506+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5111,
+        "kind": "objects",
+        "message_key": "1",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.500+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      },
+      {
+        "id": 5110,
+        "kind": "objects",
+        "message_key": "0",
+        "status": "applied",
+        "reason": null,
+        "received_at": "2026-11-05T03:17:35.494+00:00",
+        "object_count": 1,
+        "applied_objects": 1,
+        "duplicate_count": 0
+      }
+    ],
+    "uptime_seconds": 0.21
+  },
+  "retry": {
+    "status": "duplicate",
+    "message_id": 5129,
+    "original_status": "applied"
+  },
+  "health": {
+    "status": "ok",
+    "sqlite_version": "3.51.3",
+    "journal_mode": "wal",
+    "synchronous": 2,
+    "synchronous_name": "FULL",
+    "storage_bytes": 1885949952,
+    "storage_limit_bytes": 20401094656
+  },
+  "scope": "Application process/container crash recovery; not a simulated host power loss or filesystem failure."
+}

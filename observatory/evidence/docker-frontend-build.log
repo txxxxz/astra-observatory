@@ -1,0 +1,98 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.65kB done
+#1 DONE 0.0s
+
+#2 [auth] docker/dockerfile:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#3 DONE 2.3s
+
+#4 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#4 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e done
+#4 CACHED
+
+#5 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#5 ...
+
+#6 [auth] library/node:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#5 DONE 1.8s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 149B done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 182.04kB done
+#8 DONE 0.0s
+
+#9 [frontend 1/6] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#9 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b done
+#9 extracting sha256:16c9c4a8e9eef856231273efbb42a473740e8d50d74d35e6aedd04ff69fe161f
+#9 extracting sha256:16c9c4a8e9eef856231273efbb42a473740e8d50d74d35e6aedd04ff69fe161f 0.4s done
+#9 DONE 0.4s
+
+#9 [frontend 1/6] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#9 extracting sha256:a4f5d14866ae588c63337c44292afe214aff914d559292c5d723e9a4bcd589f2 done
+#9 extracting sha256:3dc74108acdc5e130b427d7da7b10d9c4333b64a3d172c569df257601830bbd0
+#9 extracting sha256:3dc74108acdc5e130b427d7da7b10d9c4333b64a3d172c569df257601830bbd0 0.6s done
+#9 DONE 1.0s
+
+#9 [frontend 1/6] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#9 extracting sha256:10950c267ef75bc6b5a21efb751cd8426f69efa262c9ef260ebbf8e9163095ec 0.0s done
+#9 extracting sha256:c617c02ae6fcb46c2ed260cb0a2fbf807eb597fa949209a3acff003ef8e31a87 done
+#9 DONE 1.0s
+
+#10 [frontend 2/6] WORKDIR /build
+#10 DONE 0.2s
+
+#11 [frontend 3/6] COPY frontend/package.json frontend/package-lock.json ./
+#11 DONE 0.0s
+
+#12 [frontend 4/6] RUN npm ci --no-audit --no-fund
+#12 6.775
+#12 6.775 added 78 packages in 7s
+#12 6.775 npm notice
+#12 6.775 npm notice New major version of npm available! 10.9.2 -> 12.2.2
+#12 6.775 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+#12 6.775 npm notice To update run: npm install -g npm@12.2.2
+#12 6.775 npm notice
+#12 DONE 6.9s
+
+#13 [frontend 5/6] COPY frontend/ ./
+#13 DONE 0.0s
+
+#14 [frontend 6/6] RUN npm run build
+#14 0.112
+#14 0.112 > astra-observatory-ui@1.0.0 build
+#14 0.112 > tsc -b && vite build
+#14 0.112
+#14 1.131 vite v6.3.6 building for production...
+#14 1.163 transforming...
+#14 2.111 ✓ 1685 modules transformed.
+#14 2.175 rendering chunks...
+#14 2.224 computing gzip size...
+#14 2.231 dist/index.html                   0.76 kB │ gzip:   0.46 kB
+#14 2.231 dist/assets/index-DbPAvey-.css   34.65 kB │ gzip:   8.02 kB
+#14 2.231 dist/assets/vendor-Bzgz95E1.js   11.79 kB │ gzip:   4.21 kB
+#14 2.231 dist/assets/index-BgwYpJZW.js   253.11 kB │ gzip:  78.03 kB
+#14 2.231 dist/assets/three-CEn5I3ab.js   482.90 kB │ gzip: 121.08 kB
+#14 2.231 ✓ built in 1.09s
+#14 DONE 2.3s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 2.4s done
+#15 exporting manifest sha256:30e388bf48e21f0d22e5718156314b9bd2a735e5ee4b788a9dd7c3fba6127b6e done
+#15 exporting config sha256:a8610d558499623ff9131bcbfa89c25c97350b557325f5e1e61790663b804ab3 done
+#15 exporting attestation manifest sha256:8367c5798563f6ac35ef8173ca47b588984ccea2b15ed613ece93f8d619202cb done
+#15 exporting manifest list sha256:1a4a065b9db147b379afc50e9722f161a09a0fc0513a48e9920a698399a33781 done
+#15 naming to docker.io/library/astra-frontend-build:local done
+#15 unpacking to docker.io/library/astra-frontend-build:local
+#15 unpacking to docker.io/library/astra-frontend-build:local 0.7s done
+#15 DONE 3.1s

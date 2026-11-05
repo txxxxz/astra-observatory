@@ -1,0 +1,23 @@
+[
+  {
+    "file": "mixed-10000-20261105T031349Z-0.json.gz",
+    "original_bytes": 7303764,
+    "original_sha256": "e1f41efbf45a9456b6303ff6a5ce24cf28315727db943a261759030f865bb375",
+    "compressed_bytes": 400836,
+    "compressed_sha256": "0f3bcdb9b65eff7ac589e8a94d7c609981fc291d01a70d28a589e9a8272994bf"
+  },
+  {
+    "file": "mixed-3000-20261105T031202Z-1.json.gz",
+    "original_bytes": 2886342,
+    "original_sha256": "7a319a1aa533a6eaf02e04287a6c734fd25d143026ba9731540de19318556bf3",
+    "compressed_bytes": 136776,
+    "compressed_sha256": "55ed01505ef30784ba696ca2fdc5ee1e68c9e2540fe7c1f9e221e16913a343c3"
+  },
+  {
+    "file": "mixed-500-20261105T031101Z-0.json.gz",
+    "original_bytes": 2151108,
+    "original_sha256": "6f28b4a818143996acd5f7129d208f105feff7c07bc601ac1ae6a77cc6e2f753",
+    "compressed_bytes": 98518,
+    "compressed_sha256": "93a8c9dc91f9bd346278fd8da491ab530e28240d4e05b4a3b40da22370e26131"
+  }
+]

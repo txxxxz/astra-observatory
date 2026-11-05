@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+node_modules/
+frontend/dist/
+data/
+generator-runs/
+*.db
+*.db-wal
+*.db-shm
+.env
+.DS_Store
+.output/
+.playwright-cli/
+*.tsbuildinfo
+.ruff_cache/

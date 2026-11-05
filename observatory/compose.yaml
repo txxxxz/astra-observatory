@@ -1,0 +1,47 @@
+name: astra-observatory
+services:
+  app:
+    build: .
+    image: astra-observatory:local
+    platform: linux/arm64
+    ports:
+      - "127.0.0.1:${OBS_PORT:-8000}:8000"
+    cpus: 4.0
+    mem_limit: 4g
+    memswap_limit: 4g
+    pids_limit: 128
+    restart: unless-stopped
+    environment:
+      OBS_DB_PATH: /data/observatory.db
+      OBS_STATIC_DIR: /app/frontend/dist
+      OBS_STORAGE_LIMIT_BYTES: "20401094656"
+      OBS_MAX_BODY_BYTES: "8388608"
+      OBS_INGEST_CONCURRENCY: "8"
+    volumes:
+      - observatory-data:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+  generator:
+    image: talkingdata/flightgen:exam-v4-f1
+    platform: linux/arm64
+    profiles: [generator]
+    ports:
+      - "127.0.0.1:${GENERATOR_PORT:-9001}:9001"
+    cpus: 1.0
+    cpuset: "0"
+    mem_limit: 256m
+    memswap_limit: 256m
+    pids_limit: 64
+    volumes:
+      - generator-runs:/runs
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"
+volumes:
+  observatory-data:
+  generator-runs:

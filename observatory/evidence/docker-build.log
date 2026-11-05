@@ -1,0 +1,159 @@
+ Image astra-observatory:local Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 626B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.65kB done
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#3 DONE 1.4s
+
+#4 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#4 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e done
+#4 CACHED
+
+#5 [internal] load metadata for docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#5 DONE 0.0s
+
+#6 [internal] load metadata for docker.io/library/python:3.12-slim@sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30
+#6 DONE 0.0s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 149B done
+#7 DONE 0.0s
+
+#8 [sqlite-build 1/5] FROM docker.io/library/python:3.12-slim@sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30
+#8 resolve docker.io/library/python:3.12-slim@sha256:b18b261e1b4974b4f321451ad5251ded85abb22c2b8b262da527dda1d031ab30 done
+#8 DONE 0.0s
+
+#9 [frontend 1/6] FROM docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b
+#9 resolve docker.io/library/node:22.14.0-bookworm-slim@sha256:1c18d9ab3af4585870b92e4dbc5cac5a0dc77dd13df1a5905cea89fc720eb05b done
+#9 DONE 0.0s
+
+#10 [sqlite-build 2/5] RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev ca-certificates && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [sqlite-build 4/5] RUN python - <<'PY'
+#11 CACHED
+
+#12 [sqlite-build 5/5] RUN gcc -O2 -fPIC -shared -DSQLITE_THREADSAFE=1 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_COLUMN_METADATA -Wl,-soname,libsqlite3.so.0 -o libsqlite3.so.0 sqlite3.c -lm -ldl -lpthread
+#12 CACHED
+
+#13 [runtime-deps 2/5] WORKDIR /app
+#13 CACHED
+
+#14 [sqlite-build 3/5] WORKDIR /build
+#14 CACHED
+
+#15 [runtime-deps 3/5] COPY --from=sqlite-build /build/libsqlite3.so.0 /opt/sqlite/libsqlite3.so.0
+#15 CACHED
+
+#16 [internal] load build context
+#16 transferring context: 155.24kB done
+#16 DONE 0.0s
+
+#17 [frontend 2/6] WORKDIR /build
+#17 CACHED
+
+#18 [frontend 3/6] COPY frontend/package.json frontend/package-lock.json ./
+#18 CACHED
+
+#19 [frontend 4/6] RUN npm ci --no-audit --no-fund
+#19 CACHED
+
+#20 [runtime-deps 4/5] COPY backend/requirements.lock ./requirements.lock
+#20 DONE 0.0s
+
+#21 [frontend 5/6] COPY frontend/ ./
+#21 DONE 0.0s
+
+#22 [frontend 6/6] RUN npm run build
+#22 0.118
+#22 0.118 > astra-observatory-ui@1.0.0 build
+#22 0.118 > tsc -b && vite build
+#22 0.118
+#22 1.431 vite v6.3.6 building for production...
+#22 1.463 transforming...
+#22 2.655 ✓ 1685 modules transformed.
+#22 2.730 rendering chunks...
+#22 2.784 computing gzip size...
+#22 2.791 dist/index.html                   0.76 kB │ gzip:   0.46 kB
+#22 2.791 dist/assets/index-DbPAvey-.css   34.65 kB │ gzip:   8.02 kB
+#22 2.791 dist/assets/vendor-Bzgz95E1.js   11.79 kB │ gzip:   4.21 kB
+#22 2.791 dist/assets/index-BHsDN-Rn.js   253.72 kB │ gzip:  78.28 kB
+#22 2.791 dist/assets/three-CEn5I3ab.js   482.90 kB │ gzip: 121.08 kB
+#22 2.791 ✓ built in 1.35s
+#22 DONE 2.8s
+
+#23 [runtime-deps 5/5] RUN pip install --no-cache-dir -r requirements.lock && python -c "import sqlite3; assert sqlite3.sqlite_version == '3.51.3', sqlite3.sqlite_version; print('Patched SQLite:', sqlite3.sqlite_version)"
+#23 1.250 Collecting annotated-types==0.8.0 (from -r requirements.lock (line 1))
+#23 2.151   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#23 2.982 Collecting anyio==4.16.0 (from -r requirements.lock (line 2))
+#23 3.321   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+#23 3.492 Collecting click==8.5.0 (from -r requirements.lock (line 3))
+#23 3.616   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#23 5.105 Collecting fastapi==0.115.12 (from -r requirements.lock (line 4))
+#23 5.229   Downloading fastapi-0.115.12-py3-none-any.whl.metadata (27 kB)
+#23 6.210 Collecting h11==0.16.0 (from -r requirements.lock (line 5))
+#23 6.334   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#23 6.644 Collecting idna==3.20 (from -r requirements.lock (line 6))
+#23 6.912   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#23 7.894 Collecting pydantic==2.14.2 (from -r requirements.lock (line 7))
+#23 8.040   Downloading pydantic-2.14.2-py3-none-any.whl.metadata (137 kB)
+#23 15.77 Collecting pydantic_core==2.50.2 (from -r requirements.lock (line 8))
+#23 16.05   Downloading pydantic_core-2.50.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (6.5 kB)
+#23 16.47 Collecting starlette==0.46.2 (from -r requirements.lock (line 9))
+#23 16.59   Downloading starlette-0.46.2-py3-none-any.whl.metadata (6.2 kB)
+#23 17.02 Collecting typing-inspection==0.4.5 (from -r requirements.lock (line 10))
+#23 17.14   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+#23 17.63 Collecting typing_extensions==4.16.0 (from -r requirements.lock (line 11))
+#23 17.75   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#23 18.16 Collecting uvicorn==0.34.2 (from -r requirements.lock (line 12))
+#23 18.28   Downloading uvicorn-0.34.2-py3-none-any.whl.metadata (6.5 kB)
+#23 19.69 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#23 20.27 Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+#23 24.02 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#23 26.07 Downloading fastapi-0.115.12-py3-none-any.whl (95 kB)
+#23 27.44 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#23 28.33 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#23 29.39 Downloading pydantic-2.14.2-py3-none-any.whl (490 kB)
+#23 32.55 Downloading pydantic_core-2.50.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (2.1 MB)
+#23 37.60    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 479.3 kB/s eta 0:00:00
+#23 37.72 Downloading starlette-0.46.2-py3-none-any.whl (72 kB)
+#23 37.93 Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+#23 38.06 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#23 38.23 Downloading uvicorn-0.34.2-py3-none-any.whl (62 kB)
+#23 38.32 Installing collected packages: typing_extensions, idna, h11, click, annotated-types, uvicorn, typing-inspection, pydantic_core, anyio, starlette, pydantic, fastapi
+#23 38.73 Successfully installed annotated-types-0.8.0 anyio-4.16.0 click-8.5.0 fastapi-0.115.12 h11-0.16.0 idna-3.20 pydantic-2.14.2 pydantic_core-2.50.2 starlette-0.46.2 typing-inspection-0.4.5 typing_extensions-4.16.0 uvicorn-0.34.2
+#23 38.73 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#23 39.51
+#23 39.51 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#23 39.51 [notice] To update, run: pip install --upgrade pip
+#23 39.58 Patched SQLite: 3.51.3
+#23 DONE 39.6s
+
+#24 [runtime 1/3] COPY backend/ ./backend/
+#24 DONE 0.0s
+
+#25 [runtime 2/3] COPY --from=frontend /build/dist ./frontend/dist/
+#25 DONE 0.0s
+
+#26 [runtime 3/3] RUN useradd --uid 10001 --create-home observer && mkdir -p /data && chown observer:observer /data
+#26 DONE 0.1s
+
+#27 exporting to image
+#27 exporting layers
+#27 exporting layers 0.3s done
+#27 exporting manifest sha256:73baf2a2e4a8bde33c33fb879935fd9b43d24a9b57d93669adb077631a21fb58 done
+#27 exporting config sha256:b683ee17046dc03275647e6c0493512075281e18ba81db98a4c4736928331270 done
+#27 exporting attestation manifest sha256:15681003ba63f6b4ad8793c11a47e8ce2a98b66a30d2a271f842f8586f501d93 done
+#27 exporting manifest list sha256:2caad321992f7225cec78286dc383a06f74840d721c6bb7fb8d86afea225193d done
+#27 naming to docker.io/library/astra-observatory:local done
+#27 unpacking to docker.io/library/astra-observatory:local 0.1s done
+#27 DONE 0.4s
+
+#28 resolving provenance for metadata file
+#28 DONE 0.0s
+ Image astra-observatory:local Built

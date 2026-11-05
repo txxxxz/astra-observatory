@@ -1,0 +1,14 @@
+{
+  "source": "IAB real download link",
+  "run": "attachment-probe-001",
+  "filters": {
+    "type_id": 10,
+    "descendants": true,
+    "name_prefix": "恒星"
+  },
+  "objects": 58,
+  "bytes": 75943,
+  "sha256": "911c199fe60673f1867c6402f0fb187f9f92e787314c109e9f1a92a5c3b173df",
+  "complete_attributes": true,
+  "name_prefix_assertion": true
+}
