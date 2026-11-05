@@ -22,7 +22,14 @@ for(const count of [599,3000]) test(`${count} observations fill wide and narrow 
   }
   assert.equal(JSON.stringify(data),original);
 });
-test('empty and single-object layouts remain finite',()=>{
+test('empty, single and coincident objects remain finite without artificial diagonals',()=>{
   assert.deepEqual(fillViewport([],[],1),[]);
   assert.deepEqual(fillViewport([[0,0,0]],['only'],2),[[0,0,0]]);
+  const ids=Array.from({length:80},(_,i)=>`coincident-${i}`);
+  const coordinates=ids.map(()=>[0,0,0]);
+  const separated=fillViewport(coordinates,ids,1);
+  const byX=[...separated].sort((a,b)=>a[0]-b[0]);
+  assert.ok(byX.some((p,i)=>i>0 && p[1]<byX[i-1][1]));
+  assert.ok(byX.some((p,i)=>i>0 && p[1]>byX[i-1][1]));
+  assert.deepEqual(fillViewport(coordinates,ids,1),separated);
 });

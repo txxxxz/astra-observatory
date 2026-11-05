@@ -386,7 +386,7 @@ def main():
     p.add_argument("--warmup-seconds", type=float, default=5, help="Also report latency after this initial window")
     p.add_argument("--no-exports", action="store_true", help="Disable concurrent exports, retain final correctness export")
     p.add_argument("--seed", type=int, default=42, help="Same seed across tiers for controlled comparisons")
-    p.add_argument("--rates", type=int, nargs="+", default=[500, 3000])
+    p.add_argument("--rates", type=int, nargs="+", default=[500, 3000], help="Target object rates; 0 means generator best effort, not pause")
     p.add_argument("--seconds", type=int, default=60)
     p.add_argument("--batch-size", type=int, default=100)
     p.add_argument("--workers", type=int, default=4)
@@ -398,8 +398,8 @@ def main():
         "--output", type=pathlib.Path, default=pathlib.Path("evidence/benchmarks")
     )
     args = p.parse_args()
-    if args.readers < 1 or args.seconds < 1 or args.workers < 1 or args.batch_size < 1 or any(rate < 1 for rate in args.rates):
-        p.error("readers, seconds, workers, batch-size and rates must be positive")
+    if args.readers < 1 or args.seconds < 1 or args.workers < 1 or args.batch_size < 1 or any(rate < 0 for rate in args.rates):
+        p.error("readers, seconds, workers and batch-size must be positive; rates must be nonnegative")
     if args.browse_interval < 0 or args.export_interval <= 0 or not 1 <= args.points_limit <= 5000 or args.warmup_seconds < 0:
         p.error("invalid probe interval, points-limit (1..5000), or warmup-seconds")
     reports = [run_tier(args, rate, i) for i, rate in enumerate(args.rates)]

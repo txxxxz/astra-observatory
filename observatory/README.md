@@ -1,16 +1,18 @@
-# 题目二 · ASTRA 宇宙万物观测站
+# ASTRA 宇宙万物观测站 · 应用详细说明
+
+[系统概览与快速运行](../README.md)
 
 一套持续接收真实发生器数据的探索工作台：可靠保存原始消息，按演化分类组织对象，在独立坐标系里交互探索，并完整导出筛选结果。
 
 技术栈：**FastAPI · SQLite WAL/FULL · React / TypeScript / Vite · Three.js**。运行时一个应用容器，前后端同源；发生器独立运行。
 
-![ASTRA 星空与星云探索](evidence/screenshots/nebula-tooltip.jpg)
+![ASTRA 星空与星云探索](evidence/screenshots/fullscreen-stars.jpg)
 
 [窄屏截图](evidence/screenshots/spotlight-mobile.jpg) · [浏览器操作验收](docs/browser-qa.md) · [本轮更新验收](docs/visual-resource-recheck.md) · [压测优化分析](docs/performance-review.md)
 
 ## 快速运行
 
-需要 Docker Desktop（Linux arm64）以及 Python 3.12+。从本目录执行：
+需要支持 Linux arm64 容器的 Docker Engine / Docker Desktop、Docker Compose，以及 Python 3.12+。从本目录执行：
 
 ```bash
 # 下载题目公开附件、校验发生器 tar 的 SHA-256、导入镜像
@@ -34,7 +36,7 @@ python3 scripts/prepare_generator.py --image-tar /absolute/path/flightgen-image.
 
 ### 星空交互与测试数据
 
-页面固定使用经过空间调整的展示布局：对当前采样点中的空间邻近区域压缩中心间距，展开局部星群，并将 Z 轴放大 8 倍，减少薄片和大片空隙。它是展示变换，不表示真实距离；页面不再提供比例切换按钮。对象详情与导出始终使用原始 XYZ，选点和聚焦跟随当前展示位置。暖黄、淡红、冰蓝等低饱和配色由对象 ID 稳定选择，亮核、光晕、轻微闪烁均为视觉效果，不代表测得的温度或亮度。远处装饰星空和缓慢流动的星云不参与点选；星云与星点共用 WebGL 上下文，以一层背景绘制呈现。
+页面固定使用经过空间调整的展示布局：对当前采样点中的空间邻近区域压缩中心间距，展开局部星群，增强 Z 轴纵深，再根据视口宽高展开投影，减少薄片、中央聚集和大片空隙。它是展示变换，不表示真实距离；页面不再提供比例切换按钮。对象详情与导出始终使用原始 XYZ，选点和聚焦跟随当前展示位置。暖黄、淡红、冰蓝等低饱和配色由对象 ID 稳定选择，亮核、光晕、轻微闪烁均为视觉效果，不代表测得的温度或亮度。远处装饰星空和缓慢流动的星云不参与点选；星云与星点共用 WebGL 上下文，以一层背景绘制呈现。
 
 分类、目录、详情和状态默认收起；Spotlight 卡片使用柔光边缘、指针光照与克制的玻璃表面。点选／聚焦后详情保持展开，按钮变为“回到原处”，可平滑恢复聚焦前的镜头位置、朝向和缩放。
 
@@ -103,11 +105,11 @@ python3 scripts/benchmark.py --rates 500 3000 --seconds 60 \
 python3 scripts/verify_recovery.py
 ```
 
-每轮负载使用新的 test_id，输出原始发生器收据、目标参数、实测确认速率、有效对象数、查询 p50/p95、并发导出次数和数量、CPU/内存及磁盘采样。`objects_per_second=0` 表示尽力发送，**不是暂停**。脚本报告里的确认速率来自发生器收据，不使用目标速率冒充测量结果。
+每轮负载使用新的 test_id，输出原始发生器收据、目标参数、实测确认速率、有效对象数、查询 p50/p95/p99、失败计数、导出首条/完整耗时、CPU/内存及磁盘采样。新版脚本增加点云、分类、坐标框架、后代筛选探针，可用 `--readers` 设置并发浏览人数；`--no-exports` 用于关闭写入期间的并发导出对照，仍会执行结束后的导出校验。`objects_per_second=0` 表示尽力发送，**不是暂停**。脚本报告里的确认速率来自发生器收据，不使用目标速率冒充测量结果。
 
 ## 实测结果
 
-2026-11-05 在实际 Linux arm64 容器内完成三档真实发生器混合负载：
+2026-11-05 在实际 Linux arm64 容器内完成以下历史三档真实发生器混合负载。当时使用一个浏览客户端，负载配置与新版探针不同；详细配置见 [部署测试报告](docs/deployment-report.md)。
 
 | 目标对象/s | 时长s | 实际确认/s | 有效对象 | 列表p95 ms | 详情p95 ms | 最终导出s | 应用峰值MiB |
 |---:|---:|---:|---:|---:|---:|---:|---:|
@@ -117,9 +119,13 @@ python3 scripts/verify_recovery.py
 
 三档共 **468,700 个有效对象**，查询／导出探针 **0 错误**，三次最终导出计数均一致。最高档导出约 500 MB 完整 JSON，用时 4.15 秒；数据目录累计约 1.76 GiB。最高档有效入库约 2,805 对象/秒，未达到 10,000 目标，尚未证明系统上限。
 
-**33 项自动化测试通过**，并在修复版 SQLite 的 arm64 镜像内复验。121 条协议样本得到 2,080 个对象、revision 11、4 次重复、2 条隔离、117 条唯一消息。SIGKILL 后21条已确认消息及20个完整对象逐字段复核通过。
+当前**37项自动化测试通过**（33项后端测试加4项压测脚本测试）。原33项后端测试曾在修复版SQLite的arm64镜像内复验；后续只读根部署后的121条样本重放全部识别为重复，见 [复验记录](docs/visual-resource-recheck.md)。121 条协议样本得到 2,080 个对象、revision 11、4 次重复、2 条隔离、117 条唯一消息。SIGKILL 后21条已确认消息及20个完整对象逐字段复核通过。
 
 确认与入库口径：第二、三档各有100个对象在发生器停止时已提交但响应中断，因此共确认468,500、实际入库468,700。全部4,685个已确认批次逐位对账通过；没有把未获确认的数据算作发生器成功确认。详见 [实测说明](docs/benchmark.md)、[紧凑摘要](evidence/benchmark-summary.json)、[收据对账](evidence/receipt-audit.json) 和 [恢复证据](evidence/recovery.json)。
+
+### 新版探针短测（不与历史三档直接比较）
+
+20秒、目标500对象/秒、两个浏览客户端，实际入库8,300对象，实测确认414.95对象/秒；列表p95 12.03ms、点云p95 9.96ms，3次并发导出，最终导出计数匹配，报告errors=0。该轮仅验证新增查询/导出测量链路，不证明长期稳态或吞吐提升。见 [原始报告](evidence/benchmarks/visual-recheck-500-20261105T035451Z-0.json) 与 [后续对照方案](docs/performance-review.md)。
 
 ## 本地前端开发
 
@@ -131,7 +137,7 @@ npm run dev
 # Vite 将 /api 与 /ingest 代理到 localhost:8000
 ```
 
-生产前端：`npm run build`，由 FastAPI 提供 `frontend/dist`。若本地运行后端，使用 `uvicorn backend.app:app --host 127.0.0.1 --port 8000 --workers 1`，并自行确认 SQLite 是已修复的版本；正式验收以容器为准。
+前端布局测试：在 `frontend/` 执行 `node --test tests/starLayout.test.mjs`，3项测试覆盖599/3,000点的宽窄屏铺满、原始数据不变与空/单点边界。生产前端：`npm run build`，由 FastAPI 提供 `frontend/dist`。若本地运行后端，使用 `uvicorn backend.app:app --host 127.0.0.1 --port 8000 --workers 1`，并自行确认 SQLite 是已修复的版本；正式验收以容器为准。
 
 ## 目录与关键取舍
 
@@ -161,4 +167,4 @@ docker compose --profile generator down
 
 `docker compose down -v` 会删除持久卷及全部观测数据；常规停止不使用 `-v`。源码仓库不包含数据库、镜像 tar、node_modules 或运行中的数据卷。
 
-提交中的大型原始负载报告使用 `.json.gz` 无损压缩（SHA-256 见 `evidence/benchmark-archive-manifest.json`）；对账和汇总脚本直接支持压缩文件，复跑负载会生成普通 JSON。
+归档的大型原始负载报告使用 `.json.gz` 无损压缩（SHA-256 见 `evidence/benchmark-archive-manifest.json`）；对账和汇总脚本直接支持压缩文件，复跑负载会生成普通 JSON。

@@ -17,3 +17,9 @@
 `python3 scripts/benchmark.py --rates 500 --seconds 20 --readers 2 --prefix visual-recheck --containers astra-observatory-app-1 astra-observatory-generator-1`
 
 真实入库8300对象，实测确认414.95对象/秒；列表p95 12.03ms、点云p95 9.96ms，3次并发导出，最终导出数量匹配，报告errors=0。该轮覆盖新增探针，不是长期稳态测试，也不表示已提升后端吞吐。详情见 `evidence/benchmarks/visual-recheck-500-20261105T035451Z-0.json` 与 `docs/performance-review.md`。
+
+## 默认铺屏布局复验
+
+默认投影在水平、垂直方向分别进行密度展开，并随视口比例调整；保留对象ID和有界Z纵深。599点与3000点均可覆盖视口四周，宽屏不会只占中央一团。相同坐标的对象采用每轴独立、稳定的打散顺序，避免二维相同排序造成斜线伪影。此变换不修改详情与导出的原始坐标。
+
+新增3项布局测试覆盖599/3000点在390×844、1280×800、1920×900比例下的边界、边缘密度、原始输入不变、空/单点及同坐标防直线回归。浏览器验证1440×900和390×844、599/3000运行、点选及聚焦返回，无控制台error；截图见 `evidence/screenshots/fullscreen-stars.jpg`。

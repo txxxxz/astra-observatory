@@ -1,0 +1,51 @@
+{
+  "checked_at_utc": "2026-11-05T04:06:45.948559+00:00",
+  "containers": [
+    {
+      "name": "/astra-observatory-app-1",
+      "image_id": "sha256:c298b4e161febf3d9c19ef8ed46a25bb71c8ebf82e7c8f720c01e070b1e20016",
+      "cpu_limit": 4.0,
+      "memory_bytes": 4294967296,
+      "memory_swap_bytes": 4294967296,
+      "log_config": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      },
+      "storage_opts": null,
+      "env": {
+        "OBS_STORAGE_LIMIT_BYTES": "19327352832"
+      }
+    },
+    {
+      "name": "/astra-observatory-generator-1",
+      "image_id": "sha256:d3e19975b2b4c40decca058042065dfef457a2ee91ce7b48b5c703d2a42e265c",
+      "cpu_limit": 1.0,
+      "memory_bytes": 268435456,
+      "memory_swap_bytes": 268435456,
+      "log_config": {
+        "Type": "json-file",
+        "Config": {
+          "max-file": "2",
+          "max-size": "5m"
+        }
+      },
+      "storage_opts": null,
+      "env": {
+        "GOMAXPROCS": "1",
+        "GOMEMLIMIT": "192MiB"
+      }
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "sqlite_version": "3.51.3",
+    "journal_mode": "wal",
+    "synchronous": 2,
+    "synchronous_name": "FULL",
+    "storage_bytes": 2092134400,
+    "storage_limit_bytes": 19327352832
+  }
+}

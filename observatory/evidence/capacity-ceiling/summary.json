@@ -1,0 +1,92 @@
+[
+  {
+    "test_id": "ceiling-b100-w4-15000-20261105T040739Z-0",
+    "target": 15000,
+    "batch": 100,
+    "workers": 4,
+    "readers": 4,
+    "seconds": 60.001269861,
+    "ack_per_s": 3369.928677649991,
+    "applied_per_s": 3376.5952032239775,
+    "objects": 202600,
+    "ack_objects": 202200,
+    "ack_gap": 400,
+    "interrupted": 4,
+    "429": 0,
+    "5xx": 0,
+    "timeouts": 0,
+    "probe_errors": 0,
+    "probe_http_failures": {
+      "list": {
+        "404": 2,
+        "2xx": 1386
+      }
+    },
+    "list_p95": 18.038625014014542,
+    "list_p99": 24.086834047921002,
+    "points_p95": 132.0181670016609,
+    "points_p99": 253.3560409792699,
+    "metrics_p95": 73.4502500272356,
+    "metrics_p99": 94.799000013154,
+    "exports": 6,
+    "export_first_record_max_ms": 18.79833301063627,
+    "final_export_seconds": 2.479789625038393,
+    "final_export_count_matches": true,
+    "final_export_bytes": 301301078,
+    "storage_growth_bytes": 836489216,
+    "storage_bytes_after": 3265064960,
+    "in_flight_sample_max": 4,
+    "source": "evidence/capacity-ceiling/ceiling-b100-w4-15000-20261105T040739Z-0.json",
+    "app_peak_cpu": 70.58,
+    "app_peak_rss_mib": 143.9,
+    "generator_peak_cpu": 1.84,
+    "generator_peak_rss_mib": 24.27
+  },
+  {
+    "test_id": "ceiling-b100-w4-5000-20261105T040624Z-0",
+    "target": 5000,
+    "batch": 100,
+    "workers": 4,
+    "readers": 4,
+    "seconds": 60.000758153,
+    "ack_per_s": 2071.6404896591307,
+    "applied_per_s": 2076.6404264805124,
+    "objects": 124600,
+    "ack_objects": 124300,
+    "ack_gap": 300,
+    "interrupted": 3,
+    "429": 0,
+    "5xx": 0,
+    "timeouts": 0,
+    "probe_errors": 0,
+    "probe_http_failures": {
+      "list": {
+        "404": 4,
+        "2xx": 1410
+      },
+      "metrics": {
+        "404": 1,
+        "2xx": 29
+      }
+    },
+    "list_p95": 16.636000014841557,
+    "list_p99": 24.492541968356818,
+    "points_p95": 77.14120799209923,
+    "points_p99": 95.66879196790978,
+    "metrics_p95": 25.771916029043496,
+    "metrics_p99": 53.47937502665445,
+    "exports": 7,
+    "export_first_record_max_ms": 18.66845798213035,
+    "final_export_seconds": 1.4033284590113908,
+    "final_export_count_matches": true,
+    "final_export_bytes": 184657232,
+    "storage_growth_bytes": 511246336,
+    "storage_bytes_after": 2428575744,
+    "in_flight_sample_max": 4,
+    "source": "evidence/capacity-ceiling/ceiling-b100-w4-5000-20261105T040624Z-0.json",
+    "app_peak_cpu": 70.39,
+    "app_peak_rss_mib": 94.25,
+    "generator_peak_cpu": 1.45,
+    "generator_peak_rss_mib": 22.96
+  }
+]
