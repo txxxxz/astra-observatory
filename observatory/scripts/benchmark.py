@@ -246,7 +246,7 @@ def run_tier(args, rate, index):
         "workers": args.workers,
         "objects_per_second": rate,
         "rate_profile": args.profile,
-        "ramp_seconds": min(5, args.seconds // 5),
+        "ramp_seconds": min(5, args.seconds // 5) if rate > 0 else 0,
         "duration_seconds": args.seconds,
         "max_batches": max(
             20000, math.ceil(rate * args.seconds / args.batch_size * 2) + 1000
@@ -312,6 +312,7 @@ def run_tier(args, rate, index):
         "report_version": 2,
         "test_id": test_id,
         "config": config,
+        "requested_target_objects_per_second": rate,
         "probe_config": {"readers": args.readers, "browse_interval_seconds": args.browse_interval, "points_limit": args.points_limit, "concurrent_exports_enabled": not args.no_exports, "warmup_seconds": args.warmup_seconds},
         "health": health,
         "started_at_utc": stamp,

@@ -1,0 +1,21 @@
+{
+  "status": 400,
+  "body": "{\"error\":\"positive ramp_seconds requires objects workload with a positive finite initial mean rate\"}\n",
+  "payload": {
+    "workload": "objects",
+    "target_url": "http://app:8000/ingest",
+    "test_id": "rate-zero-protocol-check",
+    "seed": 42,
+    "batch_size": 100,
+    "workers": 4,
+    "objects_per_second": 0,
+    "rate_profile": "bursty",
+    "ramp_seconds": 5,
+    "duration_seconds": 60,
+    "max_batches": 20000,
+    "objects": {
+      "scenario": "evolving",
+      "tree_every_batches": 20
+    }
+  }
+}

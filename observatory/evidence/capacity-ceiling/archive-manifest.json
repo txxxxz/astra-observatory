@@ -1,0 +1,44 @@
+[
+  {
+    "file": "ceiling-b100-w4-0-20261105T040944Z-0.json.gz",
+    "raw_bytes": 255182,
+    "gzip_bytes": 20782,
+    "raw_sha256": "383414b417ec1edcb630208d10a2aca4066eca8a2924e92d45c6a821bcd5c8c1",
+    "gzip_sha256": "cecb6048e62f9032fac512ffc30137edd3046270f0d49036a319dab3700ef55c"
+  },
+  {
+    "file": "ceiling-b100-w4-15000-20261105T040739Z-0.json.gz",
+    "raw_bytes": 246547,
+    "gzip_bytes": 19807,
+    "raw_sha256": "35a6bdbf807a5df8ad88dc7809328d12eaf28066b6bab94cc964b3824d3f405a",
+    "gzip_sha256": "56643c9af8c5850f0d1433ea9a64396b698c5fa9cd77600d902d7e53cf743dc8"
+  },
+  {
+    "file": "ceiling-b100-w4-5000-20261105T040624Z-0.json.gz",
+    "raw_bytes": 237511,
+    "gzip_bytes": 18523,
+    "raw_sha256": "07946080fc06d5d2d7f10aa347d646b459acdfe04fff7986e55611d3324b80be",
+    "gzip_sha256": "3bb5d75f14ae2dd8bf99e76d0ff56576777fc09c1484c1924208d6cd25ade368"
+  },
+  {
+    "file": "ceiling-b1000-w4-0-20261105T041227Z-0.json.gz",
+    "raw_bytes": 229270,
+    "gzip_bytes": 17600,
+    "raw_sha256": "b90d6f17452fbc69341a4a8c59d997f182f0fb02b372ab6b80aecbe5224addbd",
+    "gzip_sha256": "c237c7a1ce6b1e47fcf66c36526fdc0404a1fcb6b029c4a294cc6551422c5c7a"
+  },
+  {
+    "file": "ceiling-b500-w4-0-20261105T041100Z-0.json.gz",
+    "raw_bytes": 234239,
+    "gzip_bytes": 18407,
+    "raw_sha256": "dc980be36f53ea396136569e7586b497065045c8984687f18b319e00af81f43a",
+    "gzip_sha256": "73f694015e724da1df760a3626811a28266c562b3178a4819eaf752e289dadb3"
+  },
+  {
+    "file": "ceiling-b1000-w10-0-20261105T041529Z-0.json.gz",
+    "raw_bytes": 187472,
+    "gzip_bytes": 14580,
+    "raw_sha256": "d6318c89617a4e3bab80ff989fc88aebb040eb697a281c587f9cf9eccbfc3deb",
+    "gzip_sha256": "324010efa45fd2f187b308b9b6bbde8af358fa60ebfc55b85390cf12227264ff"
+  }
+]

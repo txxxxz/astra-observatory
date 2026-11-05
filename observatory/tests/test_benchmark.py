@@ -76,9 +76,12 @@ class BenchmarkTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             args = argparse.Namespace(prefix="unit", base_url="http://app.invalid", generator_url="http://generator.invalid", target_url="http://app:8000/ingest", readers=2, browse_interval=0.001, export_interval=1, points_limit=3000, warmup_seconds=0, no_exports=True, seed=73, seconds=1, batch_size=100, workers=4, profile="bursty", containers=[], output=pathlib.Path(tmp))
             with patch.object(benchmark, "json_request", side_effect=request), patch.object(benchmark, "stream_export", return_value={"count": 1, "duration_ms": 3}), patch("builtins.print"):
-                report = benchmark.run_tier(args, 500, 4)
+                report = benchmark.run_tier(args, 0, 4)
             self.assertEqual(report["report_version"], 2)
             self.assertEqual(report["config"]["seed"], 73)
+            self.assertEqual(report["config"]["objects_per_second"], 0)
+            self.assertEqual(report["requested_target_objects_per_second"], 0)
+            self.assertEqual(report["config"]["ramp_seconds"], 0)
             self.assertEqual(report["query_request_counts"]["list"]["http_statuses"]["429"], 1)
             self.assertGreaterEqual(report["query_latency"]["points"]["count"], 2)
             self.assertTrue(report["final_export_count_matches"])

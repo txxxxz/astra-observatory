@@ -1,0 +1,22 @@
+{
+  "status": 400,
+  "body": "{\"error\":\"worker batch buffers exceed the 80 MiB configuration budget\"}\n",
+  "payload": {
+    "workload": "objects",
+    "target_url": "http://app:8000/ingest",
+    "test_id": "workers16-protocol-check",
+    "seed": 42,
+    "batch_size": 1000,
+    "workers": 16,
+    "objects_per_second": 0,
+    "rate_profile": "bursty",
+    "ramp_seconds": 0,
+    "duration_seconds": 30,
+    "max_batches": 20000,
+    "retries": 2,
+    "objects": {
+      "scenario": "evolving",
+      "tree_every_batches": 20
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "runs": 12,
+  "total_objects": 2447800,
+  "total_messages": 13656,
+  "items": [
+    {
+      "test_id": "ceiling-b1000-w10-0-20261105T041529Z-0",
+      "objects": 302000,
+      "messages": 339
+    },
+    {
+      "test_id": "ceiling-b1000-w4-0-20261105T041227Z-0",
+      "objects": 584000,
+      "messages": 623
+    },
+    {
+      "test_id": "ceiling-b500-w4-0-20261105T041100Z-0",
+      "objects": 475500,
+      "messages": 1013
+    },
+    {
+      "test_id": "ceiling-b100-w4-0-20261105T040944Z-0",
+      "objects": 280000,
+      "messages": 2978
+    },
+    {
+      "test_id": "ceiling-b100-w4-15000-20261105T040739Z-0",
+      "objects": 202600,
+      "messages": 2156
+    },
+    {
+      "test_id": "ceiling-b100-w4-5000-20261105T040624Z-0",
+      "objects": 124600,
+      "messages": 1328
+    },
+    {
+      "test_id": "visual-recheck-500-20261105T035451Z-0",
+      "objects": 8300,
+      "messages": 90
+    },
+    {
+      "test_id": "recovery-20261105T031735Z",
+      "objects": 20,
+      "messages": 21
+    },
+    {
+      "test_id": "mixed-10000-20261105T031349Z-0",
+      "objects": 336600,
+      "messages": 3584
+    },
+    {
+      "test_id": "mixed-3000-20261105T031202Z-1",
+      "objects": 104200,
+      "messages": 1110
+    },
+    {
+      "test_id": "mixed-500-20261105T031101Z-0",
+      "objects": 27900,
+      "messages": 297
+    },
+    {
+      "test_id": "attachment-probe-001",
+      "objects": 2080,
+      "messages": 117
+    }
+  ]
+}
