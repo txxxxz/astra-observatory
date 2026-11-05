@@ -1,0 +1,1 @@
+{"cpu_nano":4000000000,"memory_bytes":4294967296,"memory_swap_bytes":4294967296,"read_only":true,"tmpfs":{"/tmp":"size=64m,mode=1777"},"writable_bytes":4096,"rootfs_bytes":178307072,"log_options":{"max-file":"3","max-size":"10m"}}

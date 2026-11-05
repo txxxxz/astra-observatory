@@ -1,3 +1,4 @@
+import SpotlightCard from "./components/SpotlightCard";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
@@ -6,11 +7,9 @@ import {
   Check,
   ChevronDown,
   Database,
-  FolderTree,
   Layers3,
   Orbit,
   RefreshCw,
-  Scan,
   ShieldCheck,
   Wifi,
   WifiOff,
@@ -46,6 +45,9 @@ import type { SceneHandle } from "./components/UniverseScene";
 const emptyPage: ObjectPage = { items: [], next_cursor: null, snapshot_max: 0 };
 const emptyTypes: TypeResponse = { revision: 0, items: [], changes: [] };
 export default function App() {
+  const [focusedId, setFocusedId] = useState("");
+  const [panel, setPanel] = useState<"" | "types" | "list" | "detail" | "metrics">("");
+  useEffect(() => { const close = (e: KeyboardEvent) => { if(e.key === "Escape") setPanel(""); }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, []);
   const [runs, setRuns] = useState<Run[]>([]);
   const [run, setRun] = useState("");
   const [metrics, setMetrics] = useState<Metrics | null>(null);
@@ -85,7 +87,7 @@ export default function App() {
   const [now, setNow] = useState(Date.now());
   const [diagnostics, setDiagnostics] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [mobilePanel, setMobilePanel] = useState<"scene" | "types" | "detail">(
+  const [mobilePanel] = useState<"scene" | "types" | "detail">(
     "scene",
   );
   const scene = useRef<SceneHandle>(null);
@@ -344,7 +346,7 @@ export default function App() {
   }, [run, selected]);
   const selectObject = useCallback((id: string) => {
     setSelected(id);
-    if (window.innerWidth <= 760) setMobilePanel("detail");
+    setPanel("detail");
   }, []);
   const refreshView = () => {
     setViewCount(metrics?.object_count ?? 0);
@@ -379,7 +381,7 @@ export default function App() {
     ? `${runPath(run)}/export.ndjson?${filterParams(effectiveFilters)}`
     : "";
   return (
-    <div className={`app-shell mobile-${mobilePanel}`}>
+    <div className={`app-shell immersive mobile-${mobilePanel} panel-${panel || "none"}`}>
       <header className="topbar">
         <a className="brand" href="/" aria-label="ASTRA 宇宙万物观测站">
           <span className="brand-mark">
@@ -441,7 +443,7 @@ export default function App() {
           </button>
         </div>
       </header>
-      <div className="metrics-strip">
+      {panel === "metrics" && <SpotlightCard className="metrics-strip" spotlightColor="#a7c9ef" intensity={0.14} ambient flare={false}>
         <div className="metric primary">
           <span>已发现对象</span>
           <strong>{metrics ? displayNumber(metrics.object_count) : "—"}</strong>
@@ -509,7 +511,8 @@ export default function App() {
               : "等待观测信号"}
           </small>
         </div>
-      </div>
+      </SpotlightCard>
+      }
       {(errors.connection || stale) && (
         <div className="connection-banner">
           <WifiOff size={14} />
@@ -519,38 +522,19 @@ export default function App() {
           <button onClick={() => window.location.reload()}>重新连接</button>
         </div>
       )}
-      <nav className="mobile-tabs">
-        <button
-          className={mobilePanel === "types" ? "active" : ""}
-          onClick={() => setMobilePanel("types")}
-        >
-          <FolderTree size={16} />
-          分类
-        </button>
-        <button
-          className={mobilePanel === "scene" ? "active" : ""}
-          onClick={() => setMobilePanel("scene")}
-        >
-          <Orbit size={16} />
-          探索
-        </button>
-        <button
-          className={mobilePanel === "detail" ? "active" : ""}
-          onClick={() => setMobilePanel("detail")}
-        >
-          <Scan size={16} />
-          详情{selected && <span className="tiny-dot" />}
-        </button>
+      <nav className="explore-dock" aria-label="探索工具">
+        {([['types','分类'],['list','目录'],['detail','详情'],['metrics','状态']] as const).map(([id,label]) => <button key={id} aria-expanded={panel === id} className={panel === id ? 'active' : ''} onClick={() => setPanel(panel === id ? '' : id)}>{label}</button>)}
       </nav>
+      {panel && <button className="panel-close" aria-label="收起面板" onClick={() => setPanel('')}><X size={18}/></button>}
       <main className="workspace">
-        <div className="left-column">
+        {panel === "types" && <SpotlightCard className="left-column" spotlightColor="#a7c9ef" intensity={0.16} borderGlow={0.5} spotlightSize={360} softness={0.9} ambient flare={false}>
           <CategoryTree
             items={currentTypeItems}
             changes={types.changes}
             selected={filters.type_id}
             onSelect={(id) => {
               setFilters((old) => ({ ...old, type_id: id }));
-              if (window.innerWidth <= 760) setMobilePanel("scene");
+              setPanel("");
             }}
             total={metrics?.object_count ?? 0}
             revision={metrics?.revision ?? types.revision}
@@ -561,7 +545,7 @@ export default function App() {
             }
           />
           {errors.types && <p className="error-inline">{errors.types}</p>}
-        </div>
+        </SpotlightCard>}
         <div className="center-column">
           <div className="view-toolbar">
             <div className="view-label">
@@ -605,6 +589,8 @@ export default function App() {
               error={errors.points}
               selected={selected}
               onSelect={selectObject}
+              onFocus={() => setPanel("detail")}
+              onFocusChange={setFocusedId}
               hasRun={!!run}
             />
             {additions > 0 && (
@@ -626,7 +612,7 @@ export default function App() {
               </div>
             )}
           </div>
-          <ObjectList
+          {panel === "list" && <SpotlightCard className="catalog-overlay" spotlightColor="#a7c9ef" intensity={0.13} borderGlow={0.45} spotlightSize={420} softness={0.9} ambient flare={false}><ObjectList
             items={currentPageItems}
             loading={loading.list}
             error={errors.list}
@@ -651,9 +637,9 @@ export default function App() {
             frameFilter={frameFilter}
             onFrameFilter={setFrameFilter}
             hasFrame={!!frame}
-          />
+          /></SpotlightCard>}
         </div>
-        <div className="right-column">
+        {panel === "detail" && <SpotlightCard className="right-column" spotlightColor="#a7c9ef" intensity={0.16} borderGlow={0.5} spotlightSize={360} softness={0.9} ambient flare={false}>
           <Inspector
             object={detail?.object ?? null}
             metadata={detail?.meta ?? null}
@@ -665,14 +651,15 @@ export default function App() {
             }
             loading={loading.detail}
             error={errors.detail}
+            isFocused={!!selected && focusedId === selected}
             canFocus={points.some((p) => p.id === selected)}
             onFocus={() => {
               scene.current?.focus(selected);
-              setMobilePanel("scene");
+              setPanel("detail");
             }}
             onClear={() => setSelected("")}
           />
-        </div>
+        </SpotlightCard>}
       </main>
       <footer className="statusbar">
         <span>

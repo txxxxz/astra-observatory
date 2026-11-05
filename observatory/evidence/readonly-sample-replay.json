@@ -1,0 +1,859 @@
+{
+  "kind": "original-sample-replay",
+  "not_a_performance_benchmark": true,
+  "test_id": "attachment-probe-001",
+  "elapsed_seconds": 0.5117512080469169,
+  "messages": 121,
+  "statuses": {
+    "duplicate": 121
+  },
+  "results": [
+    {
+      "file": "message-00001.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 1,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00002.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 2,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00003.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 3,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00004.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 4,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00005.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 5,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00006.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 6,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00007.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 7,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00008.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 8,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00009.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 9,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00010.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 10,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00011.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 11,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00012.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 12,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00013.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 13,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00014.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 14,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00015.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 15,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00016.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 16,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00017.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 17,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00018.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 18,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00019.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 19,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00020.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 20,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00021.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 21,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00022.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 22,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00023.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 23,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00024.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 24,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00025.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 25,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00026.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 26,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00027.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 27,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00028.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 28,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00029.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 29,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00030.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 30,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00031.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 31,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00032.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 32,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00033.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 33,
+      "original_status": "quarantined"
+    },
+    {
+      "file": "message-00034.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 34,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00035.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 35,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00036.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 36,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00037.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 37,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00038.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 38,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00039.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 39,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00040.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 40,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00041.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 41,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00042.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 42,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00043.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 43,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00044.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 44,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00045.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 45,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00046.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 46,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00047.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 47,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00048.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 48,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00049.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 49,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00050.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 49,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00051.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 50,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00052.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 51,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00053.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 52,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00054.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 52,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00055.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 53,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00056.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 54,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00057.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 55,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00058.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 56,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00059.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 57,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00060.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 58,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00061.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 59,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00062.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 59,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00063.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 60,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00064.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 61,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00065.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 62,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00066.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 63,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00067.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 64,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00068.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 65,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00069.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 66,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00070.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 67,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00071.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 68,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00072.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 69,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00073.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 70,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00074.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 71,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00075.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 72,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00076.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 73,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00077.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 74,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00078.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 75,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00079.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 75,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00080.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 76,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00081.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 77,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00082.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 78,
+      "original_status": "quarantined"
+    },
+    {
+      "file": "message-00083.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 79,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00084.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 80,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00085.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 81,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00086.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 82,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00087.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 83,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00088.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 84,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00089.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 85,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00090.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 86,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00091.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 87,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00092.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 88,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00093.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 89,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00094.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 90,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00095.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 91,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00096.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 92,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00097.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 93,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00098.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 94,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00099.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 95,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00100.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 96,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00101.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 97,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00102.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 98,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00103.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 99,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00104.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 100,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00105.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 101,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00106.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 102,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00107.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 103,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00108.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 104,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00109.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 105,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00110.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 106,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00111.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 107,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00112.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 108,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00113.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 109,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00114.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 110,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00115.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 111,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00116.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 112,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00117.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 113,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00118.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 114,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00119.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 115,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00120.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 116,
+      "original_status": "applied"
+    },
+    {
+      "file": "message-00121.json",
+      "http_status": 200,
+      "status": "duplicate",
+      "message_id": 117,
+      "original_status": "applied"
+    }
+  ]
+}

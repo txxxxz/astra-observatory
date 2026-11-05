@@ -64,7 +64,7 @@ def create_app(db_path=None, max_body_bytes=None, storage_limit_bytes=None):
     storage_limit = (
         storage_limit_bytes
         if storage_limit_bytes is not None
-        else int(os.getenv("OBS_STORAGE_LIMIT_BYTES", "20401094656"))
+        else int(os.getenv("OBS_STORAGE_LIMIT_BYTES", "19327352832"))
     )
     store = Store(path, storage_limit_bytes=storage_limit)
     app = FastAPI(title="Astra · 宇宙万物观测站", version="1.0.0")

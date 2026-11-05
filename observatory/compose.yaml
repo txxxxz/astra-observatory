@@ -11,10 +11,13 @@ services:
     memswap_limit: 4g
     pids_limit: 128
     restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
     environment:
       OBS_DB_PATH: /data/observatory.db
       OBS_STATIC_DIR: /app/frontend/dist
-      OBS_STORAGE_LIMIT_BYTES: "20401094656"
+      OBS_STORAGE_LIMIT_BYTES: "19327352832"
       OBS_MAX_BODY_BYTES: "8388608"
       OBS_INGEST_CONCURRENCY: "8"
     volumes:

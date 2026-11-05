@@ -27,7 +27,7 @@ FROM ${PYTHON_IMAGE} AS runtime-deps
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     LD_LIBRARY_PATH=/opt/sqlite \
     OBS_DB_PATH=/data/observatory.db OBS_STATIC_DIR=/app/frontend/dist \
-    OBS_STORAGE_LIMIT_BYTES=20401094656 OBS_MAX_BODY_BYTES=8388608 OBS_INGEST_CONCURRENCY=8
+    OBS_STORAGE_LIMIT_BYTES=19327352832 OBS_MAX_BODY_BYTES=8388608 OBS_INGEST_CONCURRENCY=8
 WORKDIR /app
 COPY --from=sqlite-build /build/libsqlite3.so.0 /opt/sqlite/libsqlite3.so.0
 COPY backend/requirements.lock ./requirements.lock

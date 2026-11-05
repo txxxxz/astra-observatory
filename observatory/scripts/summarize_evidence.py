@@ -67,7 +67,7 @@ def main():
         "- 应用单容器：4 vCPU、4 GiB（含 swap 总额4 GiB）；发生器：1 vCPU、256 MiB（含 swap 总额256 MiB）。实际 Docker inspect 参数见 [runtime.json](../evidence/runtime.json)。",
         "- SQLite 3.51.3 源码按官方 SHA3-256 校验后编译；构建再次断言 Python 实际链接版本。该版本包含 [WAL-reset 修复](https://www.sqlite.org/wal.html#walreset)。",
         "- Python 完整运行依赖锁在 `backend/requirements.lock`；Node/Python 基础镜像固定 digest，前端使用 `npm ci`。首次构建需联网下载构建依赖；运行不依赖外部 API。",
-        "- 应用持久化软水位19 GiB；Docker stdout日志最多30 MiB。Compose volume 不提供20 GiB硬配额，应使用本机配额/监控保证物理预算；默认不删除数据。",
+        "- 应用持久化软水位18 GiB；Docker stdout日志最多30 MiB。Compose volume 不提供20 GiB硬配额，应使用本机配额/监控保证物理预算；默认不删除数据。",
         "",
         "## 正确性与可恢复性",
         "",

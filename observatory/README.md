@@ -4,9 +4,9 @@
 
 技术栈：**FastAPI · SQLite WAL/FULL · React / TypeScript / Vite · Three.js**。运行时一个应用容器，前后端同源；发生器独立运行。
 
-![ASTRA 桌面探索工作台](evidence/screenshots/desktop.jpg)
+![ASTRA 星空与星云探索](evidence/screenshots/nebula-tooltip.jpg)
 
-[窄屏截图](evidence/screenshots/mobile.jpg) · [浏览器操作验收](docs/browser-qa.md)
+[窄屏截图](evidence/screenshots/spotlight-mobile.jpg) · [浏览器操作验收](docs/browser-qa.md) · [本轮更新验收](docs/visual-resource-recheck.md) · [压测优化分析](docs/performance-review.md)
 
 ## 快速运行
 
@@ -31,6 +31,14 @@ curl -fsS http://127.0.0.1:8000/api/health
 python3 scripts/prepare_generator.py --image-tar /absolute/path/flightgen-image.tar
 # 或 --archive /absolute/path/candidate-package.zip
 ```
+
+### 星空交互与测试数据
+
+页面固定使用经过空间调整的展示布局：对当前采样点中的空间邻近区域压缩中心间距，展开局部星群，并将 Z 轴放大 8 倍，减少薄片和大片空隙。它是展示变换，不表示真实距离；页面不再提供比例切换按钮。对象详情与导出始终使用原始 XYZ，选点和聚焦跟随当前展示位置。暖黄、淡红、冰蓝等低饱和配色由对象 ID 稳定选择，亮核、光晕、轻微闪烁均为视觉效果，不代表测得的温度或亮度。远处装饰星空和缓慢流动的星云不参与点选；星云与星点共用 WebGL 上下文，以一层背景绘制呈现。
+
+分类、目录、详情和状态默认收起；Spotlight 卡片使用柔光边缘、指针光照与克制的玻璃表面。点选／聚焦后详情保持展开，按钮变为“回到原处”，可平滑恢复聚焦前的镜头位置、朝向和缩放。
+
+应用被动接收发生器向 `/ingest` 发送的数据。打开网页不会启动发生器；已结束的运行仍可浏览。启动下面的测试后，在页面顶部选择相应 `test_id`，打开“状态”观察对象数与接收速率；点击“全站新增”提示更新星空和目录。每次测试使用新的 `test_id`，以免与已有运行混淆。
 
 ### 先体验，再接入新数据
 
@@ -70,7 +78,7 @@ curl -fsS http://127.0.0.1:9001/receipt
 
 ## 资源与容量边界
 
-Compose 强制应用 4 vCPU / 4 GiB、发生器 1 vCPU / 256 MiB，禁用额外 swap。应用与发生器 Docker 日志轮转，应用日志也轮转。数据卷内 DB、WAL、SHM 和应用日志一起计入软水位；默认 **19 GiB**，为 20 GiB 总预算预留事务与 Docker 日志余量。每次接入检查体积与剩余磁盘，默认不删除数据。
+Compose 强制应用 4 vCPU / 4 GiB、发生器 1 vCPU / 256 MiB，禁用额外 swap。应用与发生器 Docker 日志轮转，应用日志也轮转。数据卷内 DB、WAL、SHM 和应用日志一起计入软水位；默认 **18 GiB**，为 20 GiB 总预算预留镜像、事务与 Docker 日志余量。应用根文件系统只读，`/tmp` 使用上限 64 MiB 的 tmpfs（计入内存限制），避免容器可写层无界增长。每次接入检查体积与剩余磁盘，默认不删除数据。
 
 Docker volume 本身不提供 20 GiB 硬配额，软水位是应用控制，宿主总磁盘仍需运维监督。达到水位后新接入返回 503，应先归档再决定扩容；不要删除正在使用的 DB/WAL 文件。
 

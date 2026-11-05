@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS frames (
 
 
 class Store:
-    def __init__(self, path, storage_limit_bytes=19 * 1024**3, write_timeout=5):
+    def __init__(self, path, storage_limit_bytes=18 * 1024**3, write_timeout=5):
         self.path = Path(path).resolve()
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.storage_limit_bytes = storage_limit_bytes

@@ -17,6 +17,8 @@ import {
   MousePointer2,
 } from "lucide-react";
 import { displayNumber, typeColor } from "../api";
+import { createNebula } from "../nebula";
+import { starLayout, STAR_PALETTE } from "../starLayout";
 import type { Point, Frame } from "../types";
 export interface SceneHandle {
   focus: (id: string) => void;
@@ -30,6 +32,8 @@ interface Props {
   error: string;
   selected: string;
   onSelect: (id: string) => void;
+  onFocus: () => void;
+  onFocusChange: (id: string) => void;
   hasRun: boolean;
 }
 interface Runtime {
@@ -42,12 +46,35 @@ interface Runtime {
   locations: Map<string, THREE.Vector3>;
   focusTarget: THREE.Vector3 | null;
   focusCamera: THREE.Vector3 | null;
-  frameBounds: number;
+  homeTarget: THREE.Vector3;
+  homeCamera: THREE.Vector3;
   points: Point[];
   onSelect: (id: string) => void;
 }
-const vertexShader = `attribute vec3 pointColor; uniform float pixelRatio; varying vec3 vColor; void main(){vColor=pointColor;vec4 mv=modelViewMatrix*vec4(position,1.0);gl_Position=projectionMatrix*mv;gl_PointSize=clamp(1150.0/-mv.z,5.5,17.0)*pixelRatio;}`;
-const fragmentShader = `varying vec3 vColor; void main(){float d=length(gl_PointCoord-0.5)*2.0;float halo=exp(-d*d*4.5);float core=exp(-d*d*35.0);if(d>1.0)discard;gl_FragColor=vec4(mix(vColor*1.15,vec3(1.0),core*0.65),halo*0.95+core*0.5);}`;
+// Display positions use the packed layout; shader animation affects light only.
+const vertexShader = `
+attribute vec3 pointColor; attribute float starSeed;
+uniform float pixelRatio; uniform float time;
+varying vec3 vColor; varying float vLight;
+void main(){
+ vColor=pointColor;
+ vec4 mv=modelViewMatrix*vec4(position,1.0);
+ gl_Position=projectionMatrix*mv;
+ gl_PointSize=clamp((260.0+starSeed*360.0)/max(1.0,-mv.z),2.0,40.0)*pixelRatio;
+ vLight=(0.65+starSeed*0.35)*(0.94+0.06*sin(time*0.6+starSeed*71.0));
+}`;
+const fragmentShader = `
+varying vec3 vColor; varying float vLight;
+void main(){
+ vec2 p=gl_PointCoord*2.0-1.0; float r=length(p);
+ if(r>1.0)discard;
+ float core=exp(-r*r*160.0);
+ float corona=exp(-r*r*28.0)*0.48;
+ float glow=exp(-r*r*5.0)*0.12;
+ float rays=(exp(-abs(p.x)*100.0)+exp(-abs(p.y)*100.0))*exp(-r*9.0)*0.10;
+ float light=(core+corona+glow+rays)*(1.0-smoothstep(0.7,1.0,r))*vLight;
+ gl_FragColor=vec4(mix(vColor,vec3(1.0),core*0.45),light);
+}`;
 function makeRing() {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = 128;
@@ -77,32 +104,47 @@ function makeRing() {
   return new THREE.CanvasTexture(canvas);
 }
 const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
-  { points, frame, total, loading, error, selected, onSelect, hasRun },
+  { points, frame, total, loading, error, selected, onSelect, onFocus, onFocusChange, hasRun },
   ref,
 ) {
   const mount = useRef<HTMLDivElement>(null);
   const runtime = useRef<Runtime | null>(null);
   const [webglError, setWebglError] = useState("");
   const [fps, setFps] = useState<number | null>(null);
+  const [overview, setOverview] = useState(false);
+  const [focusedId, setFocusedId] = useState("");
+  const savedView = useRef<{camera: THREE.Vector3; target: THREE.Vector3; id: string} | null>(null);
   const [hover, setHover] = useState<Point | null>(null);
   const focus = (id: string) => {
     const rt = runtime.current;
     const target = rt?.locations.get(id);
     if (!rt || !target) return;
+    if (savedView.current?.id === id) {
+      rt.focusCamera = savedView.current.camera.clone();
+      rt.focusTarget = savedView.current.target.clone();
+      savedView.current = null;
+      setFocusedId(""); onFocusChange("");
+      return;
+    }
+    if (!savedView.current) savedView.current = {camera: rt.camera.position.clone(), target: rt.controls.target.clone(), id};
+    else savedView.current.id = id;
+    setFocusedId(id); onFocusChange(id);
     rt.focusTarget = target.clone();
     const direction = rt.camera.position
       .clone()
       .sub(rt.controls.target)
       .normalize();
-    rt.focusCamera = target.clone().add(direction.multiplyScalar(32));
+    rt.focusCamera = target.clone().add(direction.multiplyScalar(Math.max(0.5, rt.homeCamera.distanceTo(rt.homeTarget) * 0.10)));
   };
   const reset = () => {
     const rt = runtime.current;
     if (!rt) return;
-    rt.focusTarget = new THREE.Vector3();
-    rt.focusCamera = new THREE.Vector3(105, 62, 105);
+    rt.focusTarget = rt.homeTarget.clone();
+    rt.focusCamera = rt.homeCamera.clone();
+    setOverview(false);
+    savedView.current = null; setFocusedId(""); onFocusChange("");
   };
-  useImperativeHandle(ref, () => ({ focus, reset }), []);
+  useImperativeHandle(ref, () => ({ focus, reset }), [onFocusChange]);
   useEffect(() => {
     if (!mount.current) return;
     let renderer: THREE.WebGLRenderer;
@@ -118,8 +160,10 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
     }
     const node = mount.current;
     const scene = new THREE.Scene();
+    const nebula = createNebula();
+    scene.add(nebula.mesh);
     const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 1500);
-    camera.position.set(105, 62, 105);
+    camera.position.set(18, 9, 82);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
     renderer.setClearColor(0x070b12, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -132,7 +176,7 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.07;
-    controls.minDistance = 6;
+    controls.minDistance = 0.15;
     controls.maxDistance = 400;
     controls.rotateSpeed = 0.5;
     controls.zoomSpeed = 0.8;
@@ -145,7 +189,7 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
     const material = new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,
-      uniforms: { pixelRatio: { value: renderer.getPixelRatio() } },
+      uniforms: { pixelRatio: { value: renderer.getPixelRatio() }, time: { value: 0 } },
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
@@ -159,7 +203,8 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
     };
     const starVertices = [];
     const starColors = [];
-    for (let i = 0; i < 1500; i++) {
+    const starSeeds = [];
+    for (let i = 0; i < 2600; i++) {
       const theta = rnd() * Math.PI * 2;
       const phi = Math.acos(2 * rnd() - 1);
       const radius = 420 + rnd() * 150;
@@ -174,6 +219,7 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
         0.25 + rnd() * 0.3,
       );
       starColors.push(c.r, c.g, c.b);
+      starSeeds.push(rnd());
     }
     const starGeo = new THREE.BufferGeometry();
     starGeo.setAttribute(
@@ -181,44 +227,17 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       new THREE.Float32BufferAttribute(starVertices, 3),
     );
     starGeo.setAttribute(
-      "color",
+      "pointColor",
       new THREE.Float32BufferAttribute(starColors, 3),
     );
-    const starMat = new THREE.PointsMaterial({
-      size: 0.45,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.4,
-      depthWrite: false,
-      sizeAttenuation: true,
+    starGeo.setAttribute("starSeed", new THREE.Float32BufferAttribute(starSeeds, 1));
+    const starMat = new THREE.ShaderMaterial({
+      vertexShader, fragmentShader,
+      uniforms: { pixelRatio: { value: renderer.getPixelRatio() }, time: { value: 0 } },
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
     });
-    const stars = new THREE.Points(starGeo, starMat);
-    scene.add(stars);
-    const grid = new THREE.GridHelper(145, 10, 0x1d3544, 0x132632);
-    grid.position.y = -47;
-    const gridMaterials = Array.isArray(grid.material)
-      ? grid.material
-      : [grid.material];
-    gridMaterials.forEach((m) => {
-      m.transparent = true;
-      m.opacity = 0.35;
-    });
-    scene.add(grid);
-    const axesGeo = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(-75, -47, 0),
-      new THREE.Vector3(75, -47, 0),
-      new THREE.Vector3(0, -47, -75),
-      new THREE.Vector3(0, -47, 75),
-    ]);
-    const axes = new THREE.LineSegments(
-      axesGeo,
-      new THREE.LineBasicMaterial({
-        color: 0x345264,
-        transparent: true,
-        opacity: 0.5,
-      }),
-    );
-    scene.add(axes);
+    // Decorative sky is separate from selectable observations.
+    scene.add(new THREE.Points(starGeo, starMat));
     const ringTexture = makeRing();
     const ring = new THREE.Sprite(
       new THREE.SpriteMaterial({
@@ -241,7 +260,8 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       locations: new Map(),
       focusTarget: null,
       focusCamera: null,
-      frameBounds: 100,
+      homeTarget: new THREE.Vector3(),
+      homeCamera: new THREE.Vector3(18, 9, 82),
       points: [],
       onSelect,
     };
@@ -253,21 +273,27 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       if (!visible) return;
       renderer.setSize(width, height);
       camera.aspect = width / height;
+      nebula.material.uniforms.aspect.value = camera.aspect;
       camera.updateProjectionMatrix();
     });
     resize.observe(node);
-    const raycaster = new THREE.Raycaster();
-    raycaster.params.Points.threshold = 1.2;
-    const pointer = new THREE.Vector2();
-    let downX = 0,
-      downY = 0;
+    let downX = 0, downY = 0;
+    const projected = new THREE.Vector3();
     const hit = (event: PointerEvent) => {
       const box = renderer.domElement.getBoundingClientRect();
-      pointer.x = ((event.clientX - box.left) / box.width) * 2 - 1;
-      pointer.y = -((event.clientY - box.top) / box.height) * 2 + 1;
-      raycaster.setFromCamera(pointer, camera);
-      const hits = raycaster.intersectObject(data);
-      return hits.length ? rt.points[hits[0].index ?? -1] : undefined;
+      let best: Point | undefined;
+      let distance = 9;
+      for (const point of rt.points) {
+        const location = rt.locations.get(point.id);
+        if (!location) continue;
+        projected.copy(location).project(camera);
+        if (projected.z < -1 || projected.z > 1) continue;
+        const dx = (projected.x + 1) * box.width / 2 - (event.clientX - box.left);
+        const dy = (1 - projected.y) * box.height / 2 - (event.clientY - box.top);
+        const d = Math.hypot(dx, dy);
+        if (d < distance) { distance = d; best = point; }
+      }
+      return best;
     };
     const down = (event: PointerEvent) => {
       downX = event.clientX;
@@ -320,9 +346,12 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       controls.update();
       if (ring.visible) {
         const distance = camera.position.distanceTo(ring.position);
-        const size = Math.max(3, distance * 0.078);
+        const size = Math.max(0.08, distance * 0.078);
         ring.scale.set(size, size, 1);
       }
+      material.uniforms.time.value = reduced ? 0 : performance.now() / 1000;
+      starMat.uniforms.time.value = material.uniforms.time.value;
+      nebula.material.uniforms.time.value = material.uniforms.time.value;
       renderer.render(scene, camera);
       count++;
       const now = performance.now();
@@ -341,10 +370,7 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       material.dispose();
       starGeo.dispose();
       starMat.dispose();
-      grid.geometry.dispose();
-      gridMaterials.forEach((m) => m.dispose());
-      axesGeo.dispose();
-      (axes.material as THREE.Material).dispose();
+      nebula.dispose();
       ringTexture.dispose();
       (ring.material as THREE.Material).dispose();
       renderer.dispose();
@@ -358,42 +384,23 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
   useEffect(() => {
     const rt = runtime.current;
     if (!rt) return;
+    const previousFirst = rt.points[0]?.id;
     rt.points = points;
     rt.locations.clear();
-    let minX = Infinity,
-      minY = Infinity,
-      minZ = Infinity,
-      maxX = -Infinity,
-      maxY = -Infinity,
-      maxZ = -Infinity;
-    for (const p of points) {
-      minX = Math.min(minX, p.x);
-      minY = Math.min(minY, p.y);
-      minZ = Math.min(minZ, p.z);
-      maxX = Math.max(maxX, p.x);
-      maxY = Math.max(maxY, p.y);
-      maxZ = Math.max(maxZ, p.z);
-    }
-    const center = points.length
-      ? new THREE.Vector3(
-          (minX + maxX) / 2,
-          (minY + maxY) / 2,
-          (minZ + maxZ) / 2,
-        )
-      : new THREE.Vector3();
-    const range = points.length
-      ? Math.max(maxX - minX, maxY - minY, maxZ - minZ, 1)
-      : 1;
+    const positions = starLayout(points, true);
     const vertices = new Float32Array(points.length * 3);
     const colors = new Float32Array(points.length * 3);
+    const seeds = new Float32Array(points.length);
     for (let i = 0; i < points.length; i++) {
       const p = points[i];
-      const vector = new THREE.Vector3(p.x, p.y, p.z)
-        .sub(center)
-        .multiplyScalar(110 / range);
+      const vector = new THREE.Vector3(...positions[i]);
       vertices.set([vector.x, vector.y, vector.z], i * 3);
       rt.locations.set(p.id, vector);
-      const color = new THREE.Color(typeColor(p.type_id));
+      let hash = 2166136261;
+      for (const char of p.id) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+      seeds[i] = (hash >>> 0) / 4294967295;
+      // Display tint only: no inferred physical temperature or luminosity.
+      const color = new THREE.Color(STAR_PALETTE[(hash >>> 8) % STAR_PALETTE.length]);
       colors.set([color.r, color.g, color.b], i * 3);
     }
     rt.data.geometry.setAttribute(
@@ -404,9 +411,20 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       "pointColor",
       new THREE.BufferAttribute(colors, 3),
     );
+    rt.data.geometry.setAttribute("starSeed", new THREE.BufferAttribute(seeds, 1));
     rt.data.geometry.computeBoundingSphere();
+    if (points.length && previousFirst !== points[0].id) {
+      rt.homeTarget.set(0,0,0);
+      rt.homeCamera.copy(new THREE.Vector3(0.18,0.1,1).normalize().multiplyScalar(25));
+      rt.camera.position.copy(rt.homeCamera);
+      rt.controls.target.copy(rt.homeTarget);
+      rt.controls.update();
+      rt.focusCamera = null; rt.focusTarget = null;
+      savedView.current = null; setFocusedId(""); onFocusChange("");
+      setOverview(false);
+    }
     setHover(null);
-  }, [points]);
+  }, [points, onFocusChange]);
   useEffect(() => {
     const rt = runtime.current;
     if (!rt) return;
@@ -454,6 +472,12 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
         <p>从真实观测，探索不断变化的世界。</p>
       </div>
       <div className="scene-controls">
+        <button aria-label={overview ? "进入局部星空" : "查看坐标全景"} title={overview ? "进入局部星空" : "查看坐标全景"} onClick={() => {
+          const rt = runtime.current;
+          if (!rt) return;
+          if (overview) reset();
+          else { rt.focusTarget = new THREE.Vector3(); rt.focusCamera = new THREE.Vector3(12,8,48); savedView.current=null; setFocusedId(""); onFocusChange(""); setOverview(true); }
+        }}><Compass size={16}/></button>
         <button aria-label="放大" onClick={() => zoom(0.8)}>
           <Plus size={17} />
         </button>
@@ -465,9 +489,9 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
           <RotateCcw size={15} />
         </button>
         <button
-          aria-label="聚焦选中对象"
+          aria-label={focusedId === selected && selected ? "回到原处" : "聚焦选中对象"}
           disabled={!selected || !points.some((p) => p.id === selected)}
-          onClick={() => focus(selected)}
+          onClick={() => { focus(selected); onFocus(); }}
         >
           <Focus size={16} />
         </button>
@@ -475,11 +499,11 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       <div className="scene-bottom">
         <span>
           <Compass size={14} />
-          {frame ? `${frame.frame_kind} · ${frame.unit}` : "空间视图"}
-          <small>等比 XYZ</small>
+          {frame ? `${frame.frame_kind} · 原始单位 ${frame.unit}` : "空间视图"}
+          <small>展示布局</small>
         </span>
         <span>
-          前 {displayNumber(points.length)} / {displayNumber(total)}{" "}
+          {overview ? "全景" : "局部星空"} · 前 {displayNumber(points.length)} / {displayNumber(total)}{" "}
           个匹配坐标对象
         </span>
       </div>

@@ -2767,3 +2767,101 @@ a {
     font-size: 10px;
   }
 }
+
+/* Immersive observatory: progressive disclosure, one panel at a time. */
+.immersive.app-shell {height:100dvh;min-height:540px;display:block;overflow:hidden;background:#050910}
+.immersive .topbar {position:absolute;inset:0 0 auto;z-index:20;background:linear-gradient(#080c14d9,transparent);border:0;height:86px;padding:0 36px}
+.immersive .brand small,.immersive .workspace-label,.immersive .top-divider,.immersive .connection span,.immersive .diagnostics-button,.immersive .statusbar {display:none}
+.immersive .topbar-middle {margin-left:auto;flex:0 1 auto}
+.immersive .workspace {position:absolute;inset:0;display:block;height:100%;min-height:0}
+.immersive .center-column {display:block;position:absolute;inset:0;min-height:0;border:0}
+.immersive .scene-wrap,.immersive .universe-scene {position:absolute;inset:0;width:100%;height:100%;min-height:0}
+.immersive .view-toolbar {position:absolute;right:36px;top:94px;z-index:10;background:transparent;border:0;width:auto;max-width:420px;padding:0;height:32px}
+.immersive .view-label,.immersive .scene-topline,.immersive .scene-hint,.immersive .scene-title p,.immersive .scene-title-line {display:none}
+.immersive .scene-title {top:140px;left:44px;pointer-events:none}
+.immersive .scene-title h1 {font-size:clamp(22px,3vw,38px);font-weight:300;letter-spacing:.18em;color:#d9e6e6}
+.immersive .scene-bottom {bottom:28px;left:36px;right:36px;font-size:10px;opacity:.65}
+.immersive .scene-bottom small {display:none}
+.immersive .scene-controls {right:36px;top:50%;background:#0b141a66;border-color:#ffffff10}
+.immersive .new-data {top:110px;left:40px;right:auto;bottom:auto}
+.immersive .scene-filter {top:205px;left:44px;bottom:auto}
+.explore-dock {position:absolute;z-index:40;bottom:54px;left:50%;transform:translateX(-50%);display:flex;gap:6px;padding:7px;background:#101923aa;backdrop-filter:blur(24px);border:1px solid #ffffff16;border-radius:40px;box-shadow:0 12px 50px #0005}
+.explore-dock button {border:0;border-radius:30px;background:transparent;color:#a9b6c2;padding:12px 25px;font-size:13px;letter-spacing:.12em;cursor:pointer}
+.explore-dock button:hover,.explore-dock button.active {background:#ffffff0d;color:#bceadd}
+.panel-close {position:absolute;right:44px;top:147px;z-index:50;background:#15202b;border:1px solid #ffffff20;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;color:#dce8ee;cursor:pointer}
+.immersive .left-column,.immersive .right-column {display:block!important;position:absolute;top:140px;bottom:132px;width:330px;z-index:30;border:1px solid #ffffff18;border-radius:20px;background:#0b131ee8;backdrop-filter:blur(28px);overflow:hidden;padding:0;box-shadow:0 24px 90px #0007}
+.immersive .left-column {left:36px}
+.immersive .right-column {right:36px}
+.immersive .category-panel,.immersive .inspector {height:100%;background:transparent;border:0}
+.immersive .changes,.immersive .sidebar-foot,.immersive .inspector-empty small {display:none}
+.immersive .tree-scroll {flex:1}
+.immersive .catalog-overlay {position:absolute;z-index:30;left:36px;right:36px;bottom:132px;height:min(52vh,480px);padding:0;border-radius:20px;border:1px solid #ffffff18;background:#0b131ef0;backdrop-filter:blur(28px)}
+.immersive .object-list {height:100%;max-height:none;min-height:0;background:transparent;display:flex;flex-direction:column;border:0}
+.immersive .table-scroll {flex:1;max-height:none}
+.immersive .metrics-strip {position:absolute;z-index:30;top:140px;right:36px;width:340px;height:auto;display:grid;grid-template-columns:1fr 1fr;border:1px solid #ffffff18;border-radius:20px;padding:22px 12px;background:#0b131ef0;backdrop-filter:blur(28px);gap:20px 0;overflow:visible}
+.immersive .metrics-strip .metric {display:flex!important;min-width:0;border:0;padding:12px}
+.immersive .metrics-strip .metric strong {font-size:24px}
+.immersive .connection-banner {position:absolute;top:86px;left:0;right:0;z-index:60}
+.immersive .panel-heading {padding-right:45px}
+@media(max-width:760px){
+ .immersive .topbar {padding:0 18px;height:72px}.immersive .brand {flex-shrink:0}.immersive .run-selector {max-width:155px}.immersive .topbar-right {display:none}
+ .immersive .view-toolbar {top:82px;right:18px;max-width:260px}.immersive .scene-title {top:135px;left:24px}.immersive .scene-title h1 {font-size:22px}
+ .immersive .scene-controls {right:18px}.immersive .scene-bottom {bottom:18px;left:18px;right:18px;font-size:9px}.immersive .scene-bottom>span:first-child {display:none}
+ .explore-dock {bottom:48px;max-width:calc(100% - 28px)}.explore-dock button {padding:11px 20px}
+ .immersive .left-column,.immersive .right-column,.immersive .metrics-strip {left:14px;right:14px;top:128px;bottom:122px;width:auto;max-height:none}
+ .immersive .metrics-strip {bottom:auto}.immersive .catalog-overlay {left:14px;right:14px;bottom:122px;height:58vh}
+ .panel-close {right:22px;top:136px}.immersive .scene-filter {top:180px;left:24px}.immersive .new-data {left:20px;top:110px}
+}
+.explore-dock button {white-space:nowrap;flex-shrink:0;min-width:60px;letter-spacing:.08em}
+
+/* Soft illuminated glass: the pointer light remains behind readable content. */
+.immersive .spotlight-card {
+  border-radius: 26px;
+  border: 1px solid #d7e7ff17;
+  background: linear-gradient(145deg, #152234e8, #090f1bea 60%);
+  box-shadow: 0 24px 80px #0007, inset 0 1px 0 #ffffff09;
+  backdrop-filter: blur(32px) saturate(120%);
+}
+.immersive .right-column {width:360px}
+.immersive .panel-heading {height:58px;border-bottom:1px solid #d2e2ff0b;color:#aebed1;padding-left:24px}
+.immersive .inspector-content {padding:24px}
+.immersive .object-kind {display:inline-flex;padding:5px 10px;border-radius:20px;background:#c9dcff08;border:1px solid #d4e4ff12;color:#b6c8db;font-size:10px}
+.immersive .inspector-content h2 {font-size:26px;font-weight:400;letter-spacing:.02em;margin:16px 0 8px;color:#e4ebf5}
+.immersive .object-id {font-size:10px;color:#7d91a9}
+.immersive .focus-button {border-radius:13px;padding:13px 12px;background:linear-gradient(110deg,#a6c9ec14,#a6c9ec05);border:1px solid #c0d9f32b;color:#d1e3f5;font-size:12px;transition:background .2s,border-color .2s}
+.immersive .focus-button:hover {background:#a6c9ec20;border-color:#c0d9f354}
+.immersive .detail-section {border-color:#d5e4ff0e;margin-top:24px;padding-top:20px}
+.immersive .detail-section h3 {color:#bac8da;font-size:11px;font-weight:400;letter-spacing:.08em}
+.immersive .detail-list dt {color:#7b8fa8}.immersive .detail-list dd {color:#b4c3d5}
+.immersive .coordinate-frame {border:0;background:transparent;padding:0 0 4px;color:#9ab5d2}
+.immersive .coordinate-list {gap:7px}
+.immersive .coordinate-list>div {padding:10px 8px;border:1px solid #d1e2ff0b;border-radius:11px;background:#a8c7e907}
+.immersive .coordinate-list dt {color:#8298b3}.immersive .coordinate-list dd {color:#cfdbeb;font-size:11px}
+.immersive .detail-note {color:#758aa3}
+.immersive .attribute {padding:10px 0;border-bottom:1px solid #d5e4ff08}
+.immersive .attribute>.property-name {color:#8fa6bf}
+.immersive .metrics-strip {overflow:hidden}
+.space-mode {position:absolute;z-index:12;top:132px;right:36px;padding:5px 9px;border:1px solid #b9d5f015;border-radius:20px;background:#111c2766;color:#849cb3;font-size:10px;cursor:pointer}
+.space-mode:hover {color:#c1d6eb;border-color:#b9d5f035}
+@media(max-width:760px){
+  .immersive .right-column {width:auto}
+  .space-mode {top:116px;right:18px;font-size:9px}
+  .immersive .inspector-content {padding:20px}
+}
+
+/* Fade Content / Dock inspired feedback, without an extra animation runtime. */
+@keyframes observatory-reveal {
+  from {opacity:0;translate:0 10px;filter:blur(3px)}
+  to {opacity:1;translate:0 0;filter:blur(0)}
+}
+.immersive .spotlight-card {animation:observatory-reveal .28s ease-out both}
+.explore-dock button {transition:translate .2s ease,background .2s ease,color .2s ease}
+@media(hover:hover){.explore-dock button:hover {translate:0 -3px;background:#c8ddf514}}
+.immersive .point-tooltip {bottom:138px;z-index:35;border-radius:14px;background:#101b2be8;border-color:#b9d8ef30;box-shadow:0 10px 35px #0005;max-width:calc(100% - 40px)}
+.immersive .point-tooltip strong {white-space:normal;overflow-wrap:anywhere}
+@media(max-width:760px){.immersive .point-tooltip {bottom:132px}}
+@media(prefers-reduced-motion:reduce){
+ .immersive .spotlight-card {animation:none}
+ .explore-dock button {transition:none}
+ .explore-dock button:hover {translate:none}
+}

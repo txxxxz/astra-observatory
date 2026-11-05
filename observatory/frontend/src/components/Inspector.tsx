@@ -3,6 +3,7 @@ import {
   ChevronDown,
   ChevronRight,
   Focus,
+  RotateCcw,
   Scan,
   Copy,
   Check,
@@ -74,6 +75,7 @@ interface Props {
   error: string;
   onFocus: () => void;
   canFocus: boolean;
+  isFocused: boolean;
   onClear: () => void;
 }
 export default function Inspector({
@@ -84,6 +86,7 @@ export default function Inspector({
   error,
   onFocus,
   canFocus,
+  isFocused,
   onClear,
 }: Props) {
   const [copied, setCopied] = useState(false);
@@ -147,8 +150,8 @@ export default function Inspector({
               onClick={onFocus}
               disabled={!canFocus}
             >
-              <Focus size={15} />
-              {canFocus ? "聚焦此对象" : "不在当前采样中"}
+              {isFocused ? <RotateCcw size={15} /> : <Focus size={15} />}
+              {canFocus ? (isFocused ? "回到原处" : "聚焦此对象") : "不在当前采样中"}
             </button>
           )}
           <section className="detail-section">
