@@ -39,3 +39,39 @@ export function starLayout(points: Point[], enhanced: boolean): XYZ[] {
 
 // Stable, low-saturation display palette; does not infer physical temperature.
 export const STAR_PALETTE = ['#ead2a8', '#e5b4ac', '#abc7ef', '#e2ded3', '#bcd6e8'];
+
+/** Spread the display projection across the viewport, retaining depth and identity.
+ * Rank blending reduces empty margins caused by dense groups/outliers. These are
+ * display coordinates only; API/detail/export continue using source XYZ.
+ */
+export function fillViewport(positions: XYZ[], ids: string[], aspect: number): XYZ[] {
+  if (!positions.length) return [];
+  const distance = 25;
+  const tanHalfFov = Math.tan(24 * Math.PI / 180);
+  const depth = positions.map(p => 8 * Math.tanh(p[2] / 10));
+  const axes = [0, 1].map(axis => {
+    const values = positions.map((p,i) => p[axis] / (distance-depth[i]));
+    // Independent stable tie order per axis avoids turning coincident objects
+    // into artificial diagonal lines when their quantiles are spread apart.
+    const tie = ids.map(id => {
+      let h = 2166136261 ^ (axis * 0x9e3779b9);
+      for (const char of id) h = Math.imul(h ^ char.charCodeAt(0), 16777619);
+      h = Math.imul(h ^ (h >>> 16), 0x85ebca6b);
+      h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
+      return (h ^ (h >>> 16)) >>> 0;
+    });
+    const ordered = values.map((_,i) => i).sort((a,b) => values[a]-values[b] || tie[a]-tie[b] || ids[a].localeCompare(ids[b]));
+    const result = new Array<number>(positions.length);
+    const min = values[ordered[0]], max = values[ordered[ordered.length-1]];
+    ordered.forEach((i,rank) => {
+      const quantile = positions.length===1 ? 0 : 2*(rank+0.5)/positions.length-1;
+      const linear = max>min ? 2*(values[i]-min)/(max-min)-1 : 0;
+      result[i] = (quantile*0.88+linear*0.12)*0.98;
+    });
+    return result;
+  });
+  return positions.map((_,i) => {
+    const halfHeight=(distance-depth[i])*tanHalfFov;
+    return [axes[0][i]*halfHeight*aspect,axes[1][i]*halfHeight,depth[i]];
+  });
+}

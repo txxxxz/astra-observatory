@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { displayNumber, typeColor } from "../api";
 import { createNebula } from "../nebula";
-import { starLayout, STAR_PALETTE } from "../starLayout";
+import { starLayout, fillViewport, STAR_PALETTE } from "../starLayout";
 import type { Point, Frame } from "../types";
 export interface SceneHandle {
   focus: (id: string) => void;
@@ -50,6 +50,7 @@ interface Runtime {
   homeCamera: THREE.Vector3;
   points: Point[];
   onSelect: (id: string) => void;
+  layoutAspect: number;
 }
 // Display positions use the packed layout; shader animation affects light only.
 const vertexShader = `
@@ -163,7 +164,7 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
     const nebula = createNebula();
     scene.add(nebula.mesh);
     const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 1500);
-    camera.position.set(18, 9, 82);
+    camera.position.set(0, 0, 25);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
     renderer.setClearColor(0x070b12, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -263,6 +264,7 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       homeTarget: new THREE.Vector3(),
       homeCamera: new THREE.Vector3(18, 9, 82),
       points: [],
+      layoutAspect: 1,
       onSelect,
     };
     runtime.current = rt;
@@ -275,6 +277,25 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
       camera.aspect = width / height;
       nebula.material.uniforms.aspect.value = camera.aspect;
       camera.updateProjectionMatrix();
+      // Rescale the existing display layout, without resetting a user's camera.
+      const ratio = camera.aspect / rt.layoutAspect;
+      if (rt.locations.size && Math.abs(ratio-1)>0.00001) {
+        const attribute = rt.data.geometry.getAttribute("position");
+        rt.points.forEach((p,i) => {
+          const location = rt.locations.get(p.id)!;
+          location.x *= ratio;
+          attribute.setX(i, location.x);
+        });
+        attribute.needsUpdate=true;
+        rt.data.geometry.computeBoundingSphere();
+        rt.ring.position.x *= ratio;
+        camera.position.x *= ratio;
+        controls.target.x *= ratio;
+        if(rt.focusCamera) rt.focusCamera.x *= ratio;
+        if(rt.focusTarget) rt.focusTarget.x *= ratio;
+        if(savedView.current){savedView.current.camera.x*=ratio;savedView.current.target.x*=ratio;}
+      }
+      rt.layoutAspect=camera.aspect;
     });
     resize.observe(node);
     let downX = 0, downY = 0;
@@ -387,7 +408,8 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
     const previousFirst = rt.points[0]?.id;
     rt.points = points;
     rt.locations.clear();
-    const positions = starLayout(points, true);
+    const positions = fillViewport(starLayout(points, true), points.map(p => p.id), rt.camera.aspect);
+    rt.layoutAspect = rt.camera.aspect;
     const vertices = new Float32Array(points.length * 3);
     const colors = new Float32Array(points.length * 3);
     const seeds = new Float32Array(points.length);
@@ -415,7 +437,7 @@ const UniverseScene = forwardRef<SceneHandle, Props>(function UniverseScene(
     rt.data.geometry.computeBoundingSphere();
     if (points.length && previousFirst !== points[0].id) {
       rt.homeTarget.set(0,0,0);
-      rt.homeCamera.copy(new THREE.Vector3(0.18,0.1,1).normalize().multiplyScalar(25));
+      rt.homeCamera.copy(new THREE.Vector3(0,0,25));
       rt.camera.position.copy(rt.homeCamera);
       rt.controls.target.copy(rt.homeTarget);
       rt.controls.update();
