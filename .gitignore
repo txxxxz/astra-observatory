@@ -1,0 +1,13 @@
+# Local question materials and agent development tools
+/.agents/
+/.codex/
+/handoff/
+/宇宙万物观测站/
+/ENVIRONMENT.md
+/SKILLS.md
+
+# Local configuration and generated files
+.DS_Store
+.env
+.env.*
+!.env.example

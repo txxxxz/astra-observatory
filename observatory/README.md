@@ -8,7 +8,7 @@ ASTRA 接收发生器推送的观测数据，保存原始消息和对象状态�
 
 ![ASTRA 星空与星云探索](evidence/screenshots/fullscreen-stars.jpg)
 
-[窄屏截图](evidence/screenshots/spotlight-mobile.jpg) · [浏览器操作验收](docs/browser-qa.md) · [本轮更新验收](docs/visual-resource-recheck.md) · [压测优化分析](docs/performance-review.md)
+[窄屏截图](evidence/screenshots/spotlight-mobile.jpg) · [功能与资源验收](docs/validation.md) · [吞吐与过载测试](docs/capacity-ceiling.md)
 
 ## 快速运行
 
@@ -99,7 +99,7 @@ python3 scripts/verify_recovery.py
 
 ### 基础负载测试
 
-2026-11-05，在 Linux arm64 容器中运行题包发生器，完成以下三档测试。每档使用一个查询客户端，在持续写入期间查询列表、详情、指标并导出；详细配置见 [部署测试报告](docs/deployment-report.md)。
+2026-11-05，在 Linux arm64 容器中运行题包发生器，完成以下三档测试。每档使用一个查询客户端，在持续写入期间查询列表、详情、指标并导出；详细配置见 [基础测试报告](docs/benchmark.md)。
 
 | 目标对象/s | 时长s | 实际确认/s | 有效对象 | 列表p95 ms | 详情p95 ms | 最终导出s | 应用峰值MiB |
 |---:|---:|---:|---:|---:|---:|---:|---:|
@@ -109,13 +109,13 @@ python3 scripts/verify_recovery.py
 
 三档共入库 **468,700 个对象**，查询和导出均成功，最终导出数量全部匹配。最高档实际入库约 **2,805 对象/秒**，导出约 500 MB JSON 用时 4.15 秒；三档结束后数据目录约 1.76 GiB。
 
-当前**37项自动化测试通过**（33项后端测试加4项压测脚本测试）。原33项后端测试曾在修复版SQLite的arm64镜像内复验；后续只读根部署后的121条样本重放全部识别为重复，见 [复验记录](docs/visual-resource-recheck.md)。121 条协议样本得到 2,080 个对象、revision 11、4 次重复、2 条隔离、117 条唯一消息。SIGKILL 后21条已确认消息及20个完整对象逐字段复核通过。
+当前**37项自动化测试通过**（33项后端测试加4项压测脚本测试）。原33项后端测试曾在修复版SQLite的arm64镜像内复验；后续只读根部署后的121条样本重放全部识别为重复，见 [复验记录](docs/validation.md)。121 条协议样本得到 2,080 个对象、revision 11、4 次重复、2 条隔离、117 条唯一消息。SIGKILL 后21条已确认消息及20个完整对象逐字段复核通过。
 
 确认数与入库数分别统计：第二、三档各有 100 个对象在发生器停止时已提交到数据库，但响应中断。因此发送端共确认 468,500 个对象，数据库入库 468,700 个。全部 4,685 个已确认批次核对通过。详见 [实测说明](docs/benchmark.md)、[测试摘要](evidence/benchmark-summary.json)、[收据对账](evidence/receipt-audit.json) 和 [恢复证据](evidence/recovery.json)。
 
 ### 并发查询与导出短时验证
 
-新增点云、分类等查询后，运行了一次 20 秒测试：目标速率 500 对象/秒、两个并发查询客户端，入库 8,300 个对象，实际确认 414.95 对象/秒。列表 p95 为 12.03ms，点云 p95 为 9.96ms；3 次并发导出全部成功，最终数量匹配，报告错误数为 0。该轮使用不同的查询配置，结果单独保存。见 [原始报告](evidence/benchmarks/visual-recheck-500-20261105T035451Z-0.json) 与 [后续对照方案](docs/performance-review.md)。
+新增点云、分类等查询后，运行了一次 20 秒测试：目标速率 500 对象/秒、两个并发查询客户端，入库 8,300 个对象，实际确认 414.95 对象/秒。列表 p95 为 12.03ms，点云 p95 为 9.96ms；3 次并发导出全部成功，最终数量匹配，报告错误数为 0。该轮使用不同的查询配置，结果单独保存。见 [原始报告](evidence/benchmarks/visual-recheck-500-20261105T035451Z-0.json) 与 [后续升压结果](docs/capacity-ceiling.md)。
 
 ## 架构设计与取舍
 
@@ -125,10 +125,10 @@ frontend/      React界面、Three.js星空
 scripts/       发生器准备、样本回放、混合负载、崩溃恢复
 tests/         正确性与边界用例、压缩原始样本（约 404 KiB）
 evidence/      真实测试收据、资源记录与截图
-docs/          API、设计、独立审查与面试说明
+docs/          API、设计、功能验收与性能测试
 ```
 
-详细解释见 [设计](docs/design.md)、[API 契约](docs/API.md)、[面试说明](docs/interview-notes.md) 和 [审查记录](docs/review.md)。
+详细说明见 [设计](docs/design.md)、[API 文档](docs/API.md) 和 [功能与资源验收](docs/validation.md)。
 
 单个应用容器同时提供 API 与前端页面，SQLite 负责持久化和查询。写入由一个锁串行处理，使用事务提交后的确认机制；通过限制请求并发和分块导出控制内存占用。固定字段建立索引，动态属性保留为 JSON。该方案减少后台组件，便于在 4 vCPU / 4 GiB 环境下部署和排查问题。
 
@@ -156,7 +156,7 @@ Compose 将应用限制为 **4 vCPU / 4 GiB**，发生器单独限制为 **1 vCP
 
 数据目录的容量阈值为 **18 GiB（软限制）**，统计 DB、WAL、SHM 和应用日志。每次接入前检查目录大小与磁盘剩余空间，接近阈值时返回 503，为 20 GiB 总预算中的镜像、日志和事务增长预留空间。历史数据由用户归档管理。
 
-部署时可通过宿主文件系统配额设置 20 GiB 磁盘硬限制；普通 Docker 命名卷自身没有容量硬限制。容量统计还需包括镜像、容器层和 Docker 日志，详见 [资源配置核查](docs/performance-review.md#docker-与-20-gib-容量边界)。
+部署时可通过宿主文件系统配额设置 20 GiB 磁盘硬限制；普通 Docker 命名卷自身没有容量硬限制。容量统计还需包括镜像、容器层和 Docker 日志，详见 [资源配置核查](docs/validation.md#资源配置)。
 
 其他默认上限：请求体 8 MiB、8 个并发接入请求、2 个并发导出请求；列表每页 200 条，点云 API 最多 5,000 点（界面使用 3,000 点）。运行列表最多返回 200 项；坐标系最多 10,000 个，分类最多 100,000 个、深度最多 128。运行 ID 校验见 [API 文档](docs/API.md)。
 

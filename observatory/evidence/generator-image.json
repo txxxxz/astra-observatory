@@ -1,8 +1,0 @@
-{
-  "image": "talkingdata/flightgen:exam-v4-f1",
-  "sha256": "282dad9d5d847aac0b26de6aa8391da01aff9701b922e6510731a915833d87a5",
-  "image_id": "sha256:d3e19975b2b4c40decca058042065dfef457a2ee91ce7b48b5c703d2a42e265c",
-  "architecture": "arm64",
-  "os": "linux",
-  "load_output": "Loaded image: talkingdata/flightgen:exam-v4-f1"
-}

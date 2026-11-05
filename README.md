@@ -120,7 +120,7 @@ cd ..
 | [吞吐与过载测试](observatory/docs/capacity-ceiling.md) | 逐档升压、限流、查询延迟、资源占用与复现命令 |
 | [基础测试](observatory/docs/benchmark.md) | 最初三档混合负载结果 |
 | [确认消息核对](observatory/evidence/receipt-audit.json) / [恢复记录](observatory/evidence/recovery.json) | 已确认消息及进程崩溃恢复 |
-| [资源与界面验证](observatory/docs/visual-resource-recheck.md) | 容器配置、只读根文件系统、前端交互 |
+| [资源与界面验证](observatory/docs/validation.md) | 容器配置、只读根文件系统、前端交互 |
 
 ## 5. 架构设计与取舍
 

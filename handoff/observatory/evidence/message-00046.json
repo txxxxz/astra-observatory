@@ -1,1 +1,0 @@
-{"kind":"types","test_id":"attachment-probe-001","revision":5,"changes":[{"op":"create","node":{"type_id":31,"parent_id":4,"name":"能源组件 · 31"}},{"op":"create","node":{"type_id":32,"parent_id":11,"name":"生物档案 · 32"}}]}

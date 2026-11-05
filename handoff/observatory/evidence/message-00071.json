@@ -1,1 +1,0 @@
-{"kind":"types","test_id":"attachment-probe-001","revision":7,"changes":[{"op":"create","node":{"type_id":35,"parent_id":13,"name":"工业级 · 35"}},{"op":"create","node":{"type_id":36,"parent_id":8,"name":"实验设施 · 36"}}]}
